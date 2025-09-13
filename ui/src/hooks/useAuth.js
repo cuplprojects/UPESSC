@@ -1,11 +1,21 @@
 import { useState, useEffect } from "react";
+import useAuthStore from "@/stores/authStore";
 
 export function useAuth() {
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [legacyUser, setLegacyUser] = useState(null);
+  const [legacyLoading, setLegacyLoading] = useState(true);
+  
+  // Get Zustand store state
+  const { 
+    user: storeUser, 
+    isAuthenticated: storeAuthenticated, 
+    isLoading: storeLoading,
+    logout: storeLogout,
+    updateUser: storeUpdateUser
+  } = useAuthStore();
 
   useEffect(() => {
-    // Check localStorage for authentication
+    // Check localStorage for legacy authentication (student login)
     const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
     const userData = localStorage.getItem('user');
     const token = localStorage.getItem('token');
@@ -13,40 +23,47 @@ export function useAuth() {
     if (isAuthenticated && userData && token) {
       try {
         const parsedUser = JSON.parse(userData);
-        setUser(parsedUser);
+        setLegacyUser(parsedUser);
       } catch (error) {
         console.error('Error parsing user data:', error);
-        clearAuthData();
+        clearLegacyAuthData();
       }
     }
     
-    setIsLoading(false);
+    setLegacyLoading(false);
   }, []);
 
-  const clearAuthData = () => {
+  const clearLegacyAuthData = () => {
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    setUser(null);
+    setLegacyUser(null);
   };
 
   const logout = () => {
-    clearAuthData();
-    // Navigate to root and reload to ensure clean state
-    window.location.href = '/';
+    // Clear both legacy and store auth
+    clearLegacyAuthData();
+    storeLogout();
   };
 
   const updateUser = (userData) => {
-    setUser(userData);
+    // Update both legacy and store
+    setLegacyUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
+    storeUpdateUser(userData);
   };
 
+  // Determine which auth system is active
+  const isStoreAuthenticated = storeAuthenticated && storeUser;
+  const isLegacyAuthenticated = !!legacyUser;
+  
   return {
-    user,
-    isLoading,
-    // isAuthenticated: !!user,
-    isAuthenticated: true,
+    user: storeUser || legacyUser,
+    isLoading: storeLoading || legacyLoading,
+    isAuthenticated: isStoreAuthenticated || isLegacyAuthenticated,
     logout,
     updateUser,
+    // Additional admin-specific properties
+    isAdmin: storeUser?.admin === true,
   };
 }

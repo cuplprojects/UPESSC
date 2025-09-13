@@ -1,5 +1,5 @@
 // src/services/NotificationService.js
-import { pushToast } from '@/services/notification/NotificationService';
+import { pushToast } from '@/services/notification/component/NotificationContainer';
 
 const notification = () => {
   const notify = (type, message, options = {}) => {

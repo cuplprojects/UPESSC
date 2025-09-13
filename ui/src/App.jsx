@@ -1,6 +1,6 @@
 // App.jsx
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -19,8 +19,6 @@ import ConfirmationProvider from "./services/confirmation/components/Confirmatio
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
-  // const isAuthenticated = true;
-  // const isLoading = false;
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleMobileMenuToggle = () => {
@@ -93,7 +91,7 @@ function App() {
       <LanguageProvider>
         <TooltipProvider>
           <Toaster />
-          <Router />  {/* no BrowserRouter here */}
+          <Router />
         </TooltipProvider>
       </LanguageProvider>
     </QueryClientProvider>

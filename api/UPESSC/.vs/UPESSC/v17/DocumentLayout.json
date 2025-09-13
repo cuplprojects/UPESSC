@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\models\\institute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\models\\institute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -35,10 +43,6 @@
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\controllers\\candidatescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\upessc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\upessc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -58,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,19 +82,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SubjectsController.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\SubjectsController.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Controllers\\SubjectsController.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\SubjectsController.cs",
-              "RelativeToolTip": "UPESSC\\Controllers\\SubjectsController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAADMAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T09:28:29.246Z"
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\appsettings.json",
+              "RelativeDocumentMoniker": "UPESSC\\appsettings.json",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\appsettings.json",
+              "RelativeToolTip": "UPESSC\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-13T13:31:41.731Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Subject.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Subject.cs",
               "RelativeDocumentMoniker": "UPESSC\\Models\\Subject.cs",
@@ -102,7 +107,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "InstitutesController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\InstitutesController.cs",
               "RelativeDocumentMoniker": "UPESSC\\Controllers\\InstitutesController.cs",
@@ -114,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "CandidateEducationalQualificationsController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\CandidateEducationalQualificationsController.cs",
               "RelativeDocumentMoniker": "UPESSC\\Controllers\\CandidateEducationalQualificationsController.cs",
@@ -126,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "CandidatesController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\CandidatesController.cs",
               "RelativeDocumentMoniker": "UPESSC\\Controllers\\CandidatesController.cs",
@@ -138,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "UPESSC.csproj",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
               "RelativeDocumentMoniker": "UPESSC\\UPESSC.csproj",
@@ -150,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Institute.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Institute.cs",
               "RelativeDocumentMoniker": "UPESSC\\Models\\Institute.cs",
@@ -163,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Candidate.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Candidate.cs",
               "RelativeDocumentMoniker": "UPESSC\\Models\\Candidate.cs",
@@ -175,7 +180,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Program.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Program.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Program.cs*",
+              "RelativeToolTip": "UPESSC\\Program.cs*",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAAADcAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T07:41:01.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "SubjectsController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\SubjectsController.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Controllers\\SubjectsController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\SubjectsController.cs",
+              "RelativeToolTip": "UPESSC\\Controllers\\SubjectsController.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAADMAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T09:28:29.246Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "UPESSCDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Data\\UPESSCDbContext.cs",
               "RelativeDocumentMoniker": "UPESSC\\Data\\UPESSCDbContext.cs",
@@ -187,7 +217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "20250913083126_Initial.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Migrations\\20250913083126_Initial.cs",
               "RelativeDocumentMoniker": "UPESSC\\Migrations\\20250913083126_Initial.cs",
@@ -199,7 +229,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "CandidateEducationalQualification.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\CandidateEducationalQualification.cs",
               "RelativeDocumentMoniker": "UPESSC\\Models\\CandidateEducationalQualification.cs",
@@ -208,18 +238,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-13T08:26:38.222Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Program.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Program.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Program.cs",
-              "RelativeToolTip": "UPESSC\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T07:41:01.861Z"
             }
           ]
         }
