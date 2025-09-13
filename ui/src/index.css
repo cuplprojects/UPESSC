@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 224 71% 4%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 71% 4%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 71% 4%;
+  --primary: 234 89% 32%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 203 89% 53%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 201 89% 63%;
+  --accent-foreground: 222 84% 5%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 234 89% 32%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 0 0% 0%;
+  --foreground: 200 6.6667% 91.1765%;
+  --card: 228 9.8039% 10%;
+  --card-foreground: 0 0% 85.0980%;
+  --popover: 0 0% 0%;
+  --popover-foreground: 200 6.6667% 91.1765%;
+  --primary: 234 89% 42%;
+  --secondary: 203 89% 43%;
+  --muted: 0 0% 9.4118%;
+  --muted-foreground: 210 3.3898% 46.2745%;
+  --accent: 201 89% 53%;
+  --border: 210 5.2632% 14.9020%;
+  --input: 207 27.6596% 18.4314%;
+  --ring: 234 89% 42%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.institute-card {
+  transition: all 0.2s ease;
+}
+
+.institute-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px hsl(234 89% 32% / 0.15);
+}
+
+.progress-step {
+  transition: all 0.3s ease;
+}
+
+.drag-handle {
+  cursor: grab;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.document-upload-area {
+  border: 2px dashed hsl(var(--border));
+  transition: all 0.2s ease;
+}
+
+.document-upload-area:hover {
+  border-color: hsl(var(--primary));
+  background-color: hsl(234 89% 32% / 0.02);
+}
