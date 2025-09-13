@@ -1,54 +1,54 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\",
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|d:\\upessc\\upessc\\api\\upessc\\upessc\\models\\institute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\models\\institute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\models\\institute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|d:\\upessc\\upessc\\api\\upessc\\upessc\\controllers\\institutescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\controllers\\institutescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\controllers\\institutescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|d:\\upessc\\upessc\\api\\upessc\\upessc\\controllers\\subjectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\controllers\\subjectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\controllers\\subjectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|d:\\upessc\\upessc\\api\\upessc\\upessc\\models\\subject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\models\\subject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\models\\subject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|d:\\upessc\\upessc\\api\\upessc\\upessc\\data\\upesscdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\data\\upesscdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\data\\upesscdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|d:\\upessc\\upessc\\api\\upessc\\upessc\\models\\candidate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\models\\candidate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\models\\candidate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|d:\\upessc\\upessc\\api\\upessc\\upessc\\controllers\\candidateeducationalqualificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\controllers\\candidateeducationalqualificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\controllers\\candidateeducationalqualificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|d:\\upessc\\upessc\\api\\upessc\\upessc\\controllers\\candidatescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\controllers\\candidatescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\controllers\\candidatescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|d:\\upessc\\upessc\\api\\upessc\\upessc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|d:\\upessc\\upessc\\api\\upessc\\upessc\\upessc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\upessc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\upessc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Migrations\\20250913083126_Initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:UPESSC\\Migrations\\20250913083126_Initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\models\\candidateeducationalqualification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\models\\candidateeducationalqualification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|d:\\upessc\\upessc\\api\\upessc\\upessc\\models\\candidateeducationalqualification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\models\\candidateeducationalqualification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|c:\\users\\administrator\\desktop\\upessc\\api\\upessc\\upessc\\migrations\\20250913083126_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448981B0-D108-4800-8F7C-8D263346D149}|UPESSC\\UPESSC.csproj|solutionrelative:upessc\\migrations\\20250913083126_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,172 +58,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 10,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SubjectsController.cs",
-              "DocumentMoniker": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\SubjectsController.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Controllers\\SubjectsController.cs",
-              "ToolTip": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\SubjectsController.cs",
-              "RelativeToolTip": "UPESSC\\Controllers\\SubjectsController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAADMAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T09:28:29.246Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Subject.cs",
-              "DocumentMoniker": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Subject.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Models\\Subject.cs",
-              "ToolTip": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Subject.cs",
-              "RelativeToolTip": "UPESSC\\Models\\Subject.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T08:50:07.181Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "InstitutesController.cs",
-              "DocumentMoniker": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\InstitutesController.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Controllers\\InstitutesController.cs",
-              "ToolTip": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\InstitutesController.cs",
-              "RelativeToolTip": "UPESSC\\Controllers\\InstitutesController.cs",
-              "ViewState": "AQIAAG8AAAAAAAAAAAAAAAsAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T08:47:18.687Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CandidateEducationalQualificationsController.cs",
-              "DocumentMoniker": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\CandidateEducationalQualificationsController.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Controllers\\CandidateEducationalQualificationsController.cs",
-              "ToolTip": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\CandidateEducationalQualificationsController.cs",
-              "RelativeToolTip": "UPESSC\\Controllers\\CandidateEducationalQualificationsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T08:46:58.828Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CandidatesController.cs",
-              "DocumentMoniker": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\CandidatesController.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Controllers\\CandidatesController.cs",
-              "ToolTip": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\CandidatesController.cs",
-              "RelativeToolTip": "UPESSC\\Controllers\\CandidatesController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T08:39:49.167Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UPESSC",
-              "DocumentMoniker": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
-              "RelativeDocumentMoniker": "UPESSC\\UPESSC.csproj",
-              "ToolTip": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
-              "RelativeToolTip": "UPESSC\\UPESSC.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-09-13T08:38:58.786Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Institute.cs",
-              "DocumentMoniker": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Institute.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Models\\Institute.cs",
-              "ToolTip": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Institute.cs",
-              "RelativeToolTip": "UPESSC\\Models\\Institute.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T08:31:09.368Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Candidate.cs",
-              "DocumentMoniker": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Candidate.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Models\\Candidate.cs",
-              "ToolTip": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Candidate.cs",
-              "RelativeToolTip": "UPESSC\\Models\\Candidate.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAuwCQAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T07:45:08.391Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UPESSCDbContext.cs",
-              "DocumentMoniker": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Data\\UPESSCDbContext.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Data\\UPESSCDbContext.cs",
-              "ToolTip": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Data\\UPESSCDbContext.cs",
-              "RelativeToolTip": "UPESSC\\Data\\UPESSCDbContext.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA8AAAA0AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T07:42:49.668Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "20250913083126_Initial.cs",
-              "DocumentMoniker": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Migrations\\20250913083126_Initial.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Migrations\\20250913083126_Initial.cs",
-              "ToolTip": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Migrations\\20250913083126_Initial.cs",
-              "RelativeToolTip": "UPESSC\\Migrations\\20250913083126_Initial.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T08:31:27.014Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "CandidateEducationalQualification.cs",
-              "DocumentMoniker": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\CandidateEducationalQualification.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Models\\CandidateEducationalQualification.cs",
-              "ToolTip": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\CandidateEducationalQualification.cs",
-              "RelativeToolTip": "UPESSC\\Models\\CandidateEducationalQualification.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T08:26:38.222Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Program.cs",
-              "RelativeDocumentMoniker": "UPESSC\\Program.cs",
-              "ToolTip": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\Program.cs",
-              "RelativeToolTip": "UPESSC\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T07:41:01.861Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
@@ -234,11 +70,156 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{26341fe2-71dd-46fd-bb1b-2e51a92a0d64}"
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SubjectsController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\SubjectsController.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Controllers\\SubjectsController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\SubjectsController.cs",
+              "RelativeToolTip": "UPESSC\\Controllers\\SubjectsController.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAADMAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T09:28:29.246Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Subject.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Subject.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Models\\Subject.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Subject.cs",
+              "RelativeToolTip": "UPESSC\\Models\\Subject.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T08:50:07.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InstitutesController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\InstitutesController.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Controllers\\InstitutesController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\InstitutesController.cs",
+              "RelativeToolTip": "UPESSC\\Controllers\\InstitutesController.cs",
+              "ViewState": "AQIAAG8AAAAAAAAAAAAAAAsAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T08:47:18.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CandidateEducationalQualificationsController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\CandidateEducationalQualificationsController.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Controllers\\CandidateEducationalQualificationsController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\CandidateEducationalQualificationsController.cs",
+              "RelativeToolTip": "UPESSC\\Controllers\\CandidateEducationalQualificationsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T08:46:58.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CandidatesController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\CandidatesController.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Controllers\\CandidatesController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Controllers\\CandidatesController.cs",
+              "RelativeToolTip": "UPESSC\\Controllers\\CandidatesController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T08:39:49.167Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UPESSC.csproj",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
+              "RelativeDocumentMoniker": "UPESSC\\UPESSC.csproj",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
+              "RelativeToolTip": "UPESSC\\UPESSC.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-13T08:38:58.786Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Institute.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Institute.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Models\\Institute.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Institute.cs",
+              "RelativeToolTip": "UPESSC\\Models\\Institute.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T08:31:09.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Candidate.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Candidate.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Models\\Candidate.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\Candidate.cs",
+              "RelativeToolTip": "UPESSC\\Models\\Candidate.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAuwCQAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T07:45:08.391Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UPESSCDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Data\\UPESSCDbContext.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Data\\UPESSCDbContext.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Data\\UPESSCDbContext.cs",
+              "RelativeToolTip": "UPESSC\\Data\\UPESSCDbContext.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA8AAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T07:42:49.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "20250913083126_Initial.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Migrations\\20250913083126_Initial.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Migrations\\20250913083126_Initial.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Migrations\\20250913083126_Initial.cs",
+              "RelativeToolTip": "UPESSC\\Migrations\\20250913083126_Initial.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T08:31:27.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CandidateEducationalQualification.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\CandidateEducationalQualification.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Models\\CandidateEducationalQualification.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Models\\CandidateEducationalQualification.cs",
+              "RelativeToolTip": "UPESSC\\Models\\CandidateEducationalQualification.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T08:26:38.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Program.cs",
+              "RelativeDocumentMoniker": "UPESSC\\Program.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\Program.cs",
+              "RelativeToolTip": "UPESSC\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T07:41:01.861Z"
             }
           ]
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vAag6s1m7Dg=",
+  "dgSpecHash": "4jvNd5PUgGEn0GRQhNzmp1ClbqpzKO+lUicpHpZC2sYWFrQl/XS1HhfPyePr8xy9gNiHTTNHoTfrLmQZ7sIahw==",
   "success": true,
-  "projectFilePath": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\awssdk.core\\4.0.0.15\\awssdk.core.4.0.0.15.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\awssdk.simpleemail\\4.0.0.13\\awssdk.simpleemail.4.0.0.13.nupkg.sha512",
