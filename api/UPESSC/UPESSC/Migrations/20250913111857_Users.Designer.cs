@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPESSC.Data;
 
@@ -11,9 +12,11 @@ using UPESSC.Data;
 namespace UPESSC.Migrations
 {
     [DbContext(typeof(UPESSCDbContext))]
-    partial class UPESSCDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250913111857_Users")]
+    partial class Users
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,8 +193,9 @@ namespace UPESSC.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("UID"));
 
-                    b.Property<bool>("Admin")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<string>("Admin")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .IsRequired()

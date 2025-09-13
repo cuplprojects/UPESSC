@@ -14,5 +14,6 @@ namespace UPESSC.Data
         public DbSet<Institute> Institutes { get; set; }
         public DbSet<CandidateEducationalQualification> CandidateEducationalQualifications { get; set; }
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

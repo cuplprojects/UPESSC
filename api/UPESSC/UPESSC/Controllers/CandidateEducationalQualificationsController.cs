@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UPESSC.Data;
 using UPESSC.Models;
+using UPESSC.Models.DTO;
 
 namespace UPESSC.Controllers
 {
@@ -76,13 +77,95 @@ namespace UPESSC.Controllers
         // POST: api/CandidateEducationalQualifications
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<CandidateEducationalQualification>> PostCandidateEducationalQualification(CandidateEducationalQualification candidateEducationalQualification)
+        public async Task<ActionResult<CandidateEducationalQualification>> PostCandidateEducationalQualification(CandidateEducationQualificationDTO ceq)
         {
-            _context.CandidateEducationalQualifications.Add(candidateEducationalQualification);
-            await _context.SaveChangesAsync();
+            if (ceq == null)
+            {
+                return BadRequest("Please enter valid details");
+            }
 
-            return CreatedAtAction("GetCandidateEducationalQualification", new { id = candidateEducationalQualification.CEQID }, candidateEducationalQualification);
+            // Check for existing record (based on CID + Examination)
+            var existingRecord = await _context.CandidateEducationalQualifications
+                .FirstOrDefaultAsync(x => x.CID == ceq.CID && x.Examination == ceq.Examination);
+
+            // Prepare file upload paths
+            string marksheetFullPath = "";
+            if (ceq.MarkSheetFile != null)
+            {
+                var marksheetDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "marksheets");
+                if (!Directory.Exists(marksheetDirectory))
+                {
+                    Directory.CreateDirectory(marksheetDirectory);
+                }
+                var marksheetPath = Path.Combine("uploads/marksheets", $"{ceq.RollNumber}_{ceq.Examination}_Marksheet{Path.GetExtension(ceq.MarkSheetFile.FileName)}");
+                marksheetFullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", marksheetPath);
+
+                using (var stream = new FileStream(marksheetFullPath, FileMode.Create))
+                {
+                    await ceq.MarkSheetFile.CopyToAsync(stream);
+                }
+            }
+
+            string certificateFullPath = "";
+            if (ceq.CertificateFile != null)
+            {
+                var certificateDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "Certificate");
+                if (!Directory.Exists(certificateDirectory))
+                {
+                    Directory.CreateDirectory(certificateDirectory);
+                }
+                var certificatePath = Path.Combine("uploads/Certificate", $"{ceq.RollNumber}_{ceq.Examination}_Certificate{Path.GetExtension(ceq.CertificateFile.FileName)}");
+                certificateFullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", certificatePath);
+
+                using (var stream = new FileStream(certificateFullPath, FileMode.Create))
+                {
+                    await ceq.CertificateFile.CopyToAsync(stream);
+                }
+            }
+
+            if (existingRecord != null)
+            {
+                // Update existing record
+                existingRecord.BoardOrUniversity = ceq.BoardOrUniversity;
+                existingRecord.YearOfPassing = ceq.YearOfPassing;
+                existingRecord.RollNumber = ceq.RollNumber;
+                existingRecord.MarksObtained = ceq.MarksObtained;
+                existingRecord.TotalMarks = ceq.TotalMarks;
+                existingRecord.Percentage = ceq.Percentage;
+                existingRecord.Grade = ceq.Grade;
+                existingRecord.Subject = ceq.Subject;
+                if (ceq.MarkSheetFile != null) existingRecord.MarkSheetpath = marksheetFullPath;
+                if (ceq.CertificateFile != null) existingRecord.CertificatePath = certificateFullPath;
+
+                await _context.SaveChangesAsync();
+                return Ok(existingRecord);
+            }
+            else
+            {
+                // Insert new record
+                var candidateEducationalQualificationEntity = new CandidateEducationalQualification
+                {
+                    CID = ceq.CID,
+                    Examination = ceq.Examination,
+                    BoardOrUniversity = ceq.BoardOrUniversity,
+                    YearOfPassing = ceq.YearOfPassing,
+                    RollNumber = ceq.RollNumber,
+                    MarksObtained = ceq.MarksObtained,
+                    TotalMarks = ceq.TotalMarks,
+                    Percentage = ceq.Percentage,
+                    Grade = ceq.Grade,
+                    Subject = ceq.Subject,
+                    MarkSheetpath = ceq.MarkSheetFile != null ? marksheetFullPath : "",
+                    CertificatePath = ceq.CertificateFile != null ? certificateFullPath : ""
+                };
+
+                _context.CandidateEducationalQualifications.Add(candidateEducationalQualificationEntity);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction("GetCandidateEducationalQualification", new { id = candidateEducationalQualificationEntity.CEQID }, candidateEducationalQualificationEntity);
+            }
         }
+
 
         // DELETE: api/CandidateEducationalQualifications/5
         [HttpDelete("{id}")]
