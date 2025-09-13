@@ -15,6 +15,7 @@ import Interview from "./components/Template/Interview";
 import Verification from "./pages/Verification/Verification";
 import AdminLogin from "./components/auth/AdminLogin";
 import NotificationContainer from "./services/notification/component/NotificationContainer";
+import ConfirmationProvider from "./services/confirmation/components/ConfirmationProvider";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -46,10 +47,10 @@ function Router() {
         {!isAuthenticated ? (
           <>
             <Route path="/" element={<Landing />} />
-            {/* <Route path="/preferences" element={<Landing />} />
+            <Route path="/preferences" element={<Landing />} />
             <Route path="/documents" element={<Landing />} />
             <Route path="/payment" element={<Landing />} />
-            <Route path="/print" element={<Landing />} /> */}
+            <Route path="/print" element={<Landing />} />
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/interview-admit-card" element={<Interview />} />
           </>
