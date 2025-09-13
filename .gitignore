@@ -3,7 +3,7 @@ ui/dist
 
 .vs/
 
-api/UPESSC/.vs
 
 api/UPESSC/UPESSC/bin
 api/UPESSC/UPESSC/obj
+api/UPESSC/.vs

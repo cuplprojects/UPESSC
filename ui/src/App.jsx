@@ -90,7 +90,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
         <TooltipProvider>
-          <Toaster />
+          {/* <Toaster /> */}
           <Router />
         </TooltipProvider>
       </LanguageProvider>
