@@ -107,11 +107,89 @@ VITE_API_BASE_URL_LOCAL = http://localhost:7036
 VITE_API_BASE_URL_LIVE = http://192.168.1.24:99
 ```
 
+## Candidate Login System
+
+### Features Implemented
+
+#### 1. **Candidate Login Component**
+- **Location**: `ui/src/components/auth/CandidateLogin.jsx`
+- **Features**:
+  - Two-step authentication (Roll Number + OTP)
+  - Captcha verification
+  - AES decryption of OTP data
+  - Email and SMS OTP delivery
+  - Automatic token generation
+
+#### 2. **Crypto Utilities**
+- **Location**: `ui/src/utils/cryptoUtils.js`
+- **Features**:
+  - AES-CBC decryption matching C# SecurityService
+  - Base64 and hex string conversion
+  - Web Crypto API integration
+
+#### 3. **Login Selector**
+- **Location**: `ui/src/components/auth/LoginSelector.jsx`
+- **Features**:
+  - Toggle between Candidate and Admin login
+  - Language selection
+  - Unified UI experience
+
+### Candidate API Endpoints
+
+#### Step 1: Send OTP
+**Endpoint**: `POST /api/Candidates/Login`
+
+**Request Body**:
+```json
+{
+  "rollNumber": "string"
+}
+```
+
+**Success Response**: Encrypted string containing:
+```json
+{
+  "ID": 123,
+  "otp": "123456",
+  "expires": "2024-01-01T12:00:00Z"
+}
+```
+
+#### Step 2: Get Token
+**Endpoint**: `POST /api/Candidates/GetToken`
+
+**Request Body**:
+```json
+{
+  "UID": 123,
+  "IsVerified": true
+}
+```
+
+**Success Response**: JWT Token string
+
+### Environment Configuration
+
+Add the AES key to your `.env` file:
+```env
+VITE_AES_KEY = YOUR_HEX_AES_KEY_HERE
+```
+
+**Important**: The AES key must match the one used in your C# backend configuration.
+
+### Security Features
+- AES-CBC encryption/decryption
+- OTP expiration validation
+- Captcha verification
+- JWT token authentication
+- Session-based storage
+
 ## Next Steps
-1. Implement the `/Login` endpoint in your backend API
-2. Ensure the endpoint returns the required response format with `admin: true` for admin users
-3. Test the login functionality
-4. Implement candidate login system when ready
+1. ✅ Admin login system implemented
+2. ✅ Candidate login system implemented
+3. Configure AES key in environment variables
+4. Test both login systems
+5. Ensure backend APIs are running and accessible
 
 ## Dependencies Added
 - `zustand`: State management library for authentication store
