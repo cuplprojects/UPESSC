@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UPESSC", "UPESSC\UPESSC.csproj", "{448981B0-D108-4800-8F7C-8D263346D149}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{448981B0-D108-4800-8F7C-8D263346D149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{448981B0-D108-4800-8F7C-8D263346D149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{448981B0-D108-4800-8F7C-8D263346D149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{448981B0-D108-4800-8F7C-8D263346D149}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFB76122-9FF6-4F95-9EFC-F9109223A937}
+	EndGlobalSection
+EndGlobal

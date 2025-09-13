@@ -1,0 +1,18 @@
+﻿using Microsoft.EntityFrameworkCore;
+using UPESSC.Models;
+
+namespace UPESSC.Data
+{
+    public class UPESSCDbContext : DbContext
+    {
+
+        public UPESSCDbContext(DbContextOptions<UPESSCDbContext> options) : base(options)
+        {
+        }
+
+        public DbSet<Candidate> Candidates { get; set; }
+        public DbSet<Institute> Institutes { get; set; }
+        public DbSet<CandidateEducationalQualification> CandidateEducationalQualifications { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+    }
+}
