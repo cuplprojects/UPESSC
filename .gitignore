@@ -2,4 +2,6 @@ ui/node_modules
 ui/dist
 
 .vs/
+
+api/UPESSC/.vs
 api/UPESSC/UPESSC/bin
