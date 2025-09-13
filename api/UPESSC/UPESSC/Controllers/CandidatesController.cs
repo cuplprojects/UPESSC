@@ -104,7 +104,7 @@ namespace UPESSC.Controllers
             var candidate = await _context.Candidates.FirstOrDefaultAsync(c => c.RollNumber == loginCandidate.RollNumber);
             if (candidate == null)
             {
-                return Unauthorized("Invalid Roll Number or Phone Number.");
+                return Unauthorized("Invalid Roll Number");
             }
             var (otp, expiry) = _otpService.GenerateOtp();
 
