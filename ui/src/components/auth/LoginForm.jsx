@@ -154,7 +154,7 @@ export function LoginForm({ onSuccess }) {
     };
 
     return (
-        <Card className="w-full max-w-md mx-auto min-h-[450px] shadow-2xl border-0">
+        <Card className="w-full max-w-md mx-auto min-h-[450px] shadow-2xl bg-white">
             <CardHeader className="pb-6">
                 <CardTitle className="text-2xl text-center text-[#050C9C] font-bold">
                     {step === 1 ? "Student Login" : "Verify OTP"}
@@ -185,7 +185,7 @@ export function LoginForm({ onSuccess }) {
 
                         <Button
                             type="submit"
-                            className="w-full bg-[#050C9C] hover:bg-[#050C9C]/90 h-14 text-lg font-semibold"
+                            className="w-full bg-[#050C9C] hover:bg-[#050C9C]/90 h-14 text-lg text-white font-semibold"
                             disabled={isLoading || !captchaVerified || formData.rollNumber.length !== 10}
                         >
                             {isLoading ? "Sending OTP..." : "Send OTP"}
