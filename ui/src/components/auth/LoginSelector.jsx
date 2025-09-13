@@ -40,7 +40,7 @@ export default function LoginSelector() {
               {/* Login Type Selector and Language Toggle */}
               <div className="flex gap-2 order-2 sm:order-none">
                 {/* Login Type Selector */}
-                <div className="flex bg-[#050C9C]/80 rounded-lg p-1">
+                {/* <div className="flex bg-[#050C9C]/80 rounded-lg p-1">
                   <Button
                     variant="ghost"
                     size="sm"
@@ -63,7 +63,7 @@ export default function LoginSelector() {
                   >
                     Admin
                   </Button>
-                </div>
+                </div> */}
 
                 {/* Language Toggle */}
                 <div className="flex bg-[#050C9C]/80 rounded-lg p-1">

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UPESSC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce82f796de8092696b96e7a43b9e34cffe5d4810")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90b955f439302e3387868046f5165bcf67d215c2")]
 [assembly: System.Reflection.AssemblyProductAttribute("UPESSC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UPESSC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
