@@ -89,3 +89,17 @@ const NotificationContainer = () => {
 };
 
 export default NotificationContainer;
+
+
+// how to use ? ye lo
+
+{/*
+  
+    import notification from '@/services/NotificationService';
+
+
+    const notify = notification();
+
+    notify.error('Please fix the error before submitting');
+    
+*/}
