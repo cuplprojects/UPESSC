@@ -6,7 +6,7 @@ const Interview = () => {
     <div
       style={{
         fontFamily: "'Times New Roman', serif",
-        
+
         margin: 0,
         padding: "20px",
       }}
@@ -16,104 +16,104 @@ const Interview = () => {
         style={{
           maxWidth: "1000px",
           margin: "auto",
-         
+
           border: "5px solid black",
           padding: "30px",
-          
+
           position: "relative",
           overflow: "hidden",
         }}
       >
         {/* Watermark Logo */}
         <img
-  src={upesccLogo}
-  alt="Watermark"
-  style={{
-    position: "absolute",
-    top: "54%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    opacity: 0.3,        // clearer watermark
-    width: "655px",
-          // bigger size
-    zIndex: 0,
-    pointerEvents: "none", // don’t block text
-  }}
-/>
+          src={upesccLogo}
+          alt="Watermark"
+          style={{
+            position: "absolute",
+            top: "54%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            opacity: 0.3,        // clearer watermark
+            width: "655px",
+            // bigger size
+            zIndex: 0,
+            pointerEvents: "none", // don’t block text
+          }}
+        />
 
 
         {/* Content Above Watermark */}
         <div style={{ position: "relative", zIndex: 1 }}>
           {/* Header */}
           <div
-  className="text-center mb-4"
-  style={{ textAlign: "center", marginBottom: "1rem" }}
->
-  {/* Logo + Header in one line */}
- <div style={{ width: "100%" }}>
-  {/* Logo + Heading + Address in one row */}
-  <div
-    style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: "10px",
-      position: "relative",
-    }}
-  >
-    {/* Logo on left */}
-    <img
-      src={upesccLogo}
-      alt="UPESSC Logo"
-      style={{
-        width: "80px",
-        height: "80px",
-        objectFit: "contain",
-        marginRight: "15px",
-      }}
-    />
+            className="text-center mb-4"
+            style={{ textAlign: "center", marginBottom: "1rem" }}
+          >
+            {/* Logo + Header in one line */}
+            <div style={{ width: "100%" }}>
+              {/* Logo + Heading + Address in one row */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "10px",
+                  position: "relative",
+                }}
+              >
+                {/* Logo on left */}
+                <img
+                  src={upesccLogo}
+                  alt="UPESSC Logo"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                    marginRight: "15px",
+                  }}
+                />
 
-    {/* Heading + Address centered */}
-    <div style={{ textAlign: "center" }}>
-      <h2
-        style={{
-          margin: 0,
-          fontWeight: "bold",
-          fontSize: "30px",
-        }}
-      >
-        उत्तर प्रदेश शिक्षा सेवा चयन आयोग
-      </h2>
-      <p
-        style={{
-          marginTop: "5px",
-          marginBottom: "5px",
-          fontSize: "16px",
-        }}
-      >
-        23 एलनगंज, प्रयागराज – 211002
-      </p>
-    </div>
-  </div>
+                {/* Heading + Address centered */}
+                <div style={{ textAlign: "center" }}>
+                  <h2
+                    style={{
+                      margin: 0,
+                      fontWeight: "bold",
+                      fontSize: "30px",
+                    }}
+                  >
+                    उत्तर प्रदेश शिक्षा सेवा चयन आयोग
+                  </h2>
+                  <p
+                    style={{
+                      marginTop: "5px",
+                      marginBottom: "5px",
+                      fontSize: "16px",
+                    }}
+                  >
+                    23 एलनगंज, प्रयागराज – 211002
+                  </p>
+                </div>
+              </div>
 
-  {/* Underline */}
-  <div
-    style={{
-      borderBottom: "2px solid black",
-      marginTop: "5px",
-      marginBottom: "5px",
-    }}
-  ></div>
+              {/* Underline */}
+              <div
+                style={{
+                  borderBottom: "2px solid black",
+                  marginTop: "5px",
+                  marginBottom: "5px",
+                }}
+              ></div>
 
-  {/* PROVISIONAL bottom-right under underline */}
-  <div style={{ textAlign: "right" }}>
-    <p style={{ margin: 0, fontWeight: "bold", fontSize: "16px" }}>
-      PROVISIONAL
-    </p>
-  </div>
-</div>
+              {/* PROVISIONAL bottom-right under underline */}
+              <div style={{ textAlign: "right" }}>
+                <p style={{ margin: 0, fontWeight: "bold", fontSize: "16px" }}>
+                  PROVISIONAL
+                </p>
+              </div>
+            </div>
 
-</div>
+          </div>
 
 
           {/* Title */}
@@ -122,34 +122,34 @@ const Interview = () => {
             style={{ textAlign: "center", margin: "1rem 0" }}
           >
             <div style={{ textAlign: "center", fontWeight: "bold" }}>
-  <h3
-    style={{
-      margin: "0",
-      fontWeight: "bold",
-      display: "inline-block",   // keeps underline only as wide as text
-      borderBottom: "3px solid black", // single thick underline
-      paddingBottom: "4px",
-    }}
-  >
-    सहायक आचार्य (विज्ञापन संख्या – 51)
-     <p style={{ margin: "5px 0 0 0", fontWeight: "bold" }}>
-    चयन परीक्षा – 2022
-  </p>
-  </h3>
- 
-</div>
+              <h3
+                style={{
+                  margin: "0",
+                  fontWeight: "bold",
+                  display: "inline-block",   // keeps underline only as wide as text
+                  borderBottom: "3px solid black", // single thick underline
+                  paddingBottom: "4px",
+                }}
+              >
+                सहायक आचार्य (विज्ञापन संख्या – 51)
+                <p style={{ margin: "5px 0 0 0", fontWeight: "bold" }}>
+                  चयन परीक्षा – 2022
+                </p>
+              </h3>
 
-           <p
-  style={{
-    fontWeight: "bold",
-    display: "inline-block",       // underline only as wide as text
-    borderBottom: "1px solid black", // dark underline
-    paddingBottom: "4px",
-    margin: "10px 0",
-  }}
->
-  साक्षात्कार-पत्र (औपबं‍धिक)
-</p>
+            </div>
+
+            <p
+              style={{
+                fontWeight: "bold",
+                display: "inline-block",       // underline only as wide as text
+                borderBottom: "1px solid black", // dark underline
+                paddingBottom: "4px",
+                margin: "10px 0",
+              }}
+            >
+              साक्षात्कार-पत्र (औपबं‍धिक)
+            </p>
 
           </div>
 
@@ -306,7 +306,7 @@ const Interview = () => {
 
           {/* Footer */}
           <div
-           
+
             style={{ textAlign: "center", marginTop: "1rem" }}
           >
             <p>सचिव</p>

@@ -12,9 +12,15 @@ import Landing from "@/pages/Landing";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/not-found";
 import Interview from "./components/Template/Interview";
+import Verification from "./pages/Verification/Verification";
+import AdminLogin from "./components/auth/AdminLogin";
+import NotificationContainer from "./services/notification/component/NotificationContainer";
+import ConfirmationProvider from "./services/confirmation/components/ConfirmationProvider";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
+  // const isAuthenticated = true;
+  // const isLoading = false;
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleMobileMenuToggle = () => {
@@ -31,6 +37,10 @@ function Router() {
 
   return (
     <>
+    {/* ✅ Mount notifications globally — outside Routes */}
+      <NotificationContainer />
+      {/* ✅ Mount confirmation modal globally — outside Routes */}
+      <ConfirmationProvider />
       {isAuthenticated && <Header onMobileMenuToggle={handleMobileMenuToggle} />}
 
       <Routes>
@@ -41,6 +51,7 @@ function Router() {
             <Route path="/documents" element={<Landing />} />
             <Route path="/payment" element={<Landing />} />
             <Route path="/print" element={<Landing />} />
+            <Route path="/admin" element={<AdminLogin />} />
             <Route path="/interview-admit-card" element={<Interview />} />
           </>
         ) : (
@@ -66,6 +77,7 @@ function Router() {
               element={<Home sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />}
             />
             <Route path="/interview-admit-card" element={<Interview />} />
+            <Route path="/verification" element={<Verification />} />
           </>
         )}
 
