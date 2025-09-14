@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPESSC.Data;
 
@@ -11,9 +12,11 @@ using UPESSC.Data;
 namespace UPESSC.Migrations
 {
     [DbContext(typeof(UPESSCDbContext))]
-    partial class UPESSCDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250913195521_CandidateUpdate3")]
+    partial class CandidateUpdate3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,28 +237,6 @@ namespace UPESSC.Migrations
                     b.ToTable("CandidateEducationalQualifications");
                 });
 
-            modelBuilder.Entity("UPESSC.Models.CandidateInstitutePreference", b =>
-                {
-                    b.Property<int>("CIPID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CIPID"));
-
-                    b.Property<int>("CID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PreferenceOrder")
-                        .HasColumnType("int");
-
-                    b.HasKey("CIPID");
-
-                    b.ToTable("CandidateInstitutePreferences");
-                });
-
             modelBuilder.Entity("UPESSC.Models.ExaminationMasters", b =>
                 {
                     b.Property<int>("ExaminationID")
@@ -312,10 +293,6 @@ namespace UPESSC.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("SubjectName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("SubjectNameEnglish")
                         .IsRequired()
                         .HasColumnType("longtext");
 

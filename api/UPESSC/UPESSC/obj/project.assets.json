@@ -13176,11 +13176,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
+      "projectUniqueName": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
       "projectName": "UPESSC",
-      "projectPath": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
+      "projectPath": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\Desktop\\UPESSC\\api\\UPESSC\\UPESSC\\obj\\",
+      "outputPath": "D:\\UPESSC\\UPESSC\\api\\UPESSC\\UPESSC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -13319,7 +13319,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
