@@ -1,10 +1,20 @@
 import React, { useState } from "react";
-import { Search, CheckCircle, XCircle, Eye, X } from "lucide-react";
+import { Search, Eye, Check, X, AlertTriangle } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 const Verification = () => {
     const [rollNumber, setRollNumber] = useState("");
     const [isLoaded, setIsLoaded] = useState(false);
     const [selectedDocument, setSelectedDocument] = useState(null);
+    const { toast } = useToast();
     const [certificates, setCertificates] = useState([
         {
             sn: 1,
@@ -90,7 +100,11 @@ const Verification = () => {
     };
 
     const handleSubmit = () => {
-        alert("Verification submitted successfully!");
+        toast({
+            title: "Verification Submitted",
+            description: "Certificate verification has been submitted successfully.",
+            variant: "default",
+        });
         // Reset form
         setRollNumber("");
         setIsLoaded(false);
@@ -116,250 +130,238 @@ const Verification = () => {
         !allCertificatesVerified || !rejectedCertificatesHaveReasons;
 
     return (
-        <div className="min-h-screen bg-[#FBFBFB] font-inter">
-            {/* Google Fonts */}
-            <link
-                href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-                rel="stylesheet"
-            />
-
+        <div className="min-h-screen bg-background">
             <div className="container mx-auto px-4 py-8 max-w-7xl">
                 {/* Header Section */}
                 <div className="mb-8">
-                    <h1 className="font-playfair font-medium text-3xl md:text-4xl text-black leading-tight mb-2">
+                    <h1 className="text-3xl md:text-4xl font-semibold text-foreground mb-4">
                         Certificate Verification
                     </h1>
-                    <div className="w-16 h-px bg-black mb-6"></div>
-                    <p className="font-inter text-sm text-[#4D4D4D] leading-6 max-w-2xl">
+                    <p className="text-muted-foreground max-w-2xl">
                         Enter the candidate's roll number to view and verify their submitted
                         certificates and documents.
                     </p>
                 </div>
 
                 {/* Search Section */}
-                <div className="bg-white rounded-sm border border-[#E8E8E8] p-6 mb-8 shadow-sm">
-                    <div className="flex flex-col sm:flex-row gap-4 items-end">
-                        <div className="flex-1">
-                            <label className="font-inter font-semibold text-sm text-black mb-2 block">
-                                Candidate Roll Number
-                            </label>
-                            <input
-                                type="text"
-                                value={rollNumber}
-                                onChange={(e) => setRollNumber(e.target.value)}
-                                onKeyPress={handleKeyPress}
-                                placeholder="Enter roll number (e.g., 2024001)"
-                                className="w-full px-4 py-3 border border-[#DCDCDC] rounded-sm font-inter text-sm text-black placeholder-gray-400 focus:outline-none focus:border-black transition-colors"
-                            />
+                <Card className="mb-8">
+                    <CardContent className="p-6">
+                        <div className="flex flex-col sm:flex-row gap-4 items-end">
+                            <div className="flex-1">
+                                <Label htmlFor="rollNumber" className="text-sm font-medium mb-2 block">
+                                    Candidate Roll Number
+                                </Label>
+                                <Input
+                                    id="rollNumber"
+                                    type="text"
+                                    value={rollNumber}
+                                    onChange={(e) => setRollNumber(e.target.value)}
+                                    onKeyPress={handleKeyPress}
+                                    placeholder="Enter roll number (e.g., 2024001)"
+                                    className="w-full"
+                                />
+                            </div>
+                            <Button
+                                onClick={handleSearch}
+                                disabled={!rollNumber.trim()}
+                                className="bg-[#050C9C] hover:bg-[#050C9C]/90 text-white"
+                            >
+                                <Search className="w-4 h-4 mr-2 " />
+                                Search
+                            </Button>
                         </div>
-                        <button
-                            onClick={handleSearch}
-                            disabled={!rollNumber.trim()}
-                            className="bg-black text-white font-inter font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-sm hover:bg-gray-800 active:bg-gray-900 transition-colors duration-200 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2"
-                        >
-                            <Search className="w-4 h-4" />
-                            Search
-                        </button>
-                    </div>
-                </div>
+                    </CardContent>
+                </Card>
 
                 {/* Verification Table */}
                 {isLoaded && (
-                    <div className="bg-white rounded-sm border border-[#E8E8E8] shadow-sm overflow-hidden">
-                        {/* Table Header */}
-                        <div className="bg-[#F5F5F5] px-6 py-4 border-b border-[#E8E8E8]">
-                            <h2 className="font-inter font-semibold text-lg text-black">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="text-lg">
                                 Verification for Roll Number: {rollNumber}
-                            </h2>
-                        </div>
-
-                        {/* Table */}
-                        <div className="overflow-x-auto">
-                            <table className="w-full">
-                                <thead className="bg-[#FBFBFB] border-b border-[#E8E8E8]">
-                                    <tr>
-                                        <th className="px-6 py-4 text-left font-inter font-semibold text-sm text-black w-20">
-                                            Sr. No.
-                                        </th>
-                                        <th className="px-6 py-4 text-left font-inter font-semibold text-sm text-black">
-                                            Certificate
-                                        </th>
-                                        <th className="px-6 py-4 text-center font-inter font-semibold text-sm text-black w-32">
-                                            View
-                                        </th>
-                                        <th className="px-6 py-4 text-center font-inter font-semibold text-sm text-black w-48">
-                                            Verification
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {certificates.map((cert, index) => (
-                                        <React.Fragment key={cert.sn}>
-                                            <tr className="border-b border-[#E8E8E8] hover:bg-[#FBFBFB] transition-colors">
-                                                <td className="px-6 py-4 font-inter text-sm text-black">
-                                                    {cert.sn}
-                                                </td>
-                                                <td className="px-6 py-4 font-inter text-sm text-[#4D4D4D] leading-6">
-                                                    {cert.certificate}
-                                                </td>
-                                                <td className="px-6 py-4 text-center">
-                                                    <button
-                                                        onClick={() => handleViewDocument(cert)}
-                                                        className="inline-flex items-center gap-2 px-3 py-2 text-xs font-medium text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-sm transition-colors"
-                                                    >
-                                                        <Eye className="w-4 h-4" />
-                                                        View
-                                                    </button>
-                                                </td>
-                                                <td className="px-6 py-4 text-center">
-                                                    <div className="flex items-center justify-center gap-2">
-                                                        <button
-                                                            onClick={() => handleStatusChange(index, true)}
-                                                            className={`px-4 py-2 text-xs font-medium rounded-sm transition-colors ${cert.status === true
-                                                                ? "bg-green-500 text-white"
-                                                                : "bg-gray-100 text-gray-600 hover:bg-green-100 hover:text-green-600"
-                                                                }`}
-                                                        >
-                                                            Yes
-                                                        </button>
-                                                        <button
-                                                            onClick={() => handleStatusChange(index, false)}
-                                                            className={`px-4 py-2 text-xs font-medium rounded-sm transition-colors ${cert.status === false
-                                                                ? "bg-red-500 text-white"
-                                                                : "bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-600"
-                                                                }`}
-                                                        >
-                                                            No
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            {/* Rejection Reason Row */}
-                                            {cert.status === false && (
-                                                <tr className="border-b border-[#E8E8E8] bg-red-50">
-                                                    <td className="px-6 py-4"></td>
-                                                    <td className="px-6 py-4" colSpan={3}>
-                                                        <div className="flex flex-col gap-2">
-                                                            <label className="font-inter font-medium text-xs text-red-700">
-                                                                Reason for Rejection (Required)
-                                                            </label>
-                                                            <textarea
-                                                                value={cert.rejectionReason}
-                                                                onChange={(e) =>
-                                                                    handleRejectionReasonChange(
-                                                                        index,
-                                                                        e.target.value,
-                                                                    )
-                                                                }
-                                                                placeholder="Please provide a reason for rejecting this certificate..."
-                                                                className="w-full px-3 bg-white py-2 border border-red-200 rounded-sm font-inter text-sm text-black placeholder-red-400 focus:outline-none focus:border-red-400 transition-colors resize-none"
-                                                                rows={2}
-                                                            />
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="overflow-x-auto">
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead className="w-20">Sr. No.</TableHead>
+                                            <TableHead>Certificate</TableHead>
+                                            <TableHead className="text-center w-32">View</TableHead>
+                                            <TableHead className="text-center w-48">Verification</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {certificates.map((cert, index) => (
+                                            <React.Fragment key={cert.sn}>
+                                                <TableRow>
+                                                    <TableCell className="font-medium">
+                                                        {cert.sn}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <div className="flex items-center gap-2">
+                                                            {cert.certificate}
+                                                            {cert.status === true && (
+                                                                <Badge variant="default" className="bg-green-500">
+                                                                    <Check className="w-3 h-3 mr-1" />
+                                                                    Approved
+                                                                </Badge>
+                                                            )}
+                                                            {cert.status === false && (
+                                                                <Badge variant="destructive" className={"bg-red-500 text-white"}>
+                                                                    <X className="w-3 h-3 mr-1" />
+                                                                    Rejected
+                                                                </Badge>
+                                                            )}
                                                         </div>
-                                                    </td>
-                                                </tr>
-                                            )}
-                                        </React.Fragment>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-
-                        {/* Footer Section */}
-                        <div className="px-6 py-6 bg-[#F5F5F5] border-t border-[#E8E8E8]">
-                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                                {/* Status Info */}
-                                <div className="text-sm text-gray-600">
-                                    {allCertificatesVerified ? (
-                                        rejectedCertificatesHaveReasons ? (
-                                            <span className="text-green-600 font-medium">
-                                                ✓ All certificates verified and ready to submit
-                                            </span>
-                                        ) : (
-                                            <span className="text-red-600 font-medium">
-                                                ⚠ Please provide rejection reasons for all rejected
-                                                certificates
-                                            </span>
-                                        )
-                                    ) : (
-                                        <span className="text-orange-600 font-medium">
-                                            ⚠ Please verify all certificates before submitting
-                                        </span>
-                                    )}
-                                </div>
-
-                                {/* Submit Button */}
-                                <button
-                                    onClick={handleSubmit}
-                                    disabled={isSubmitDisabled}
-                                    className={`font-inter font-semibold text-xs uppercase tracking-widest px-8 py-3 rounded-sm transition-colors duration-200 ${isSubmitDisabled
-                                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                                        : "bg-black text-white hover:bg-gray-800 active:bg-gray-900"
-                                        }`}
-                                >
-                                    Submit Verification
-                                </button>
+                                                    </TableCell>
+                                                    <TableCell className="text-center">
+                                                        <Button
+                                                            variant="outline"
+                                                            size="sm"
+                                                            onClick={() => handleViewDocument(cert)}
+                                                        >
+                                                            <Eye className="w-4 h-4 mr-2" />
+                                                            View
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell className="text-center">
+                                                        <div className="flex items-center justify-center gap-2">
+                                                            <Button
+                                                                variant={cert.status === true ? "default" : "outline"}
+                                                                size="sm"
+                                                                onClick={() => handleStatusChange(index, true)}
+                                                                className={cert.status === true ? "bg-green-500 hover:bg-green-600" : ""}
+                                                            >
+                                                                <Check className="w-4 h-4 mr-1" />
+                                                                Yes
+                                                            </Button>
+                                                            <Button
+                                                                variant={cert.status === false ? "destructive" : "outline"}
+                                                                size="sm"
+                                                                onClick={() => handleStatusChange(index, false)}
+                                                            >
+                                                                <X className="w-4 h-4 mr-1" />
+                                                                No
+                                                            </Button>
+                                                        </div>
+                                                    </TableCell>
+                                                </TableRow>
+                                                {/* Rejection Reason Row */}
+                                                {cert.status === false && (
+                                                    <TableRow className="bg-destructive/5">
+                                                        <TableCell></TableCell>
+                                                        <TableCell colSpan={3}>
+                                                            <div className="flex flex-col gap-2">
+                                                                <Label className="text-xs text-destructive font-medium">
+                                                                    Reason for Rejection (Required)
+                                                                </Label>
+                                                                <Textarea
+                                                                    value={cert.rejectionReason}
+                                                                    onChange={(e) =>
+                                                                        handleRejectionReasonChange(
+                                                                            index,
+                                                                            e.target.value,
+                                                                        )
+                                                                    }
+                                                                    placeholder="Please provide a reason for rejecting this certificate..."
+                                                                    className="resize-none"
+                                                                    rows={2}
+                                                                />
+                                                            </div>
+                                                        </TableCell>
+                                                    </TableRow>
+                                                )}
+                                            </React.Fragment>
+                                        ))}
+                                    </TableBody>
+                                </Table>
                             </div>
-                        </div>
-                    </div>
+
+                            {/* Footer Section */}
+                            <div className="mt-6 pt-6 border-t">
+                                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                    {/* Status Info */}
+                                    <div className="flex items-center gap-2 text-sm">
+                                        {allCertificatesVerified ? (
+                                            rejectedCertificatesHaveReasons ? (
+                                                <>
+                                                    <Check className="w-4 h-4 text-green-600" />
+                                                    <span className="text-green-600 font-medium">
+                                                        All certificates verified and ready to submit
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <AlertTriangle className="w-4 h-4 text-destructive" />
+                                                    <span className="text-destructive font-medium">
+                                                        Please provide rejection reasons for all rejected certificates
+                                                    </span>
+                                                </>
+                                            )
+                                        ) : (
+                                            <>
+                                                <AlertTriangle className="w-4 h-4 text-orange-600" />
+                                                <span className="text-orange-600 font-medium">
+                                                    Please verify all certificates before submitting
+                                                </span>
+                                            </>
+                                        )}
+                                    </div>
+
+                                    {/* Submit Button */}
+                                    <Button
+                                        onClick={handleSubmit}
+                                        disabled={isSubmitDisabled}
+                                        className="bg-[#050C9C] hover:bg-[#050C9C]/90 text-white"
+                                    >
+                                        Submit Verification
+                                    </Button>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
                 )}
 
                 {/* Empty State */}
                 {!isLoaded && (
-                    <div className="bg-white rounded-sm border border-[#E8E8E8] p-12 text-center shadow-sm">
-                        <div className="max-w-md mx-auto">
-                            <Search className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                            <h3 className="font-inter font-semibold text-lg text-black mb-2">
-                                Enter Roll Number to Begin
-                            </h3>
-                            <p className="font-inter text-sm text-[#4D4D4D] leading-6">
-                                Please enter a candidate's roll number in the search field above
-                                to view their certificates for verification.
-                            </p>
-                        </div>
-                    </div>
+                    <Card>
+                        <CardContent className="p-12 text-center">
+                            <div className="max-w-md mx-auto">
+                                <Search className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                                <h3 className="text-lg font-semibold text-foreground mb-2">
+                                    Enter Roll Number to Begin
+                                </h3>
+                                <p className="text-sm text-muted-foreground">
+                                    Please enter a candidate's roll number in the search field above
+                                    to view their certificates for verification.
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
                 )}
             </div>
 
             {/* Document Preview Modal */}
-            {selectedDocument && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-                    <div className="bg-white rounded-lg max-w-4xl max-h-[90vh] w-full overflow-hidden">
-                        {/* Modal Header */}
-                        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                            <h3 className="font-inter font-semibold text-lg text-black">
-                                Document Preview - {selectedDocument.certificate}
-                            </h3>
-                            <button
-                                onClick={closeModal}
-                                className="p-2 hover:bg-gray-100 rounded-sm transition-colors"
-                            >
-                                <X className="w-5 h-5 text-gray-500" />
-                            </button>
-                        </div>
-
-                        {/* Modal Body */}
-                        <div className="p-6 overflow-auto max-h-[calc(90vh-120px)]">
-                            <div className="flex justify-center">
-                                <img
-                                    src={selectedDocument.documentUrl}
-                                    alt={selectedDocument.certificate}
-                                    className="max-w-full h-auto border border-gray-200 rounded-sm shadow-sm"
-                                />
-                            </div>
+            <Dialog open={!!selectedDocument} onOpenChange={() => setSelectedDocument(null)}>
+                <DialogContent className="max-w-4xl max-h-[90vh]">
+                    <DialogHeader>
+                        <DialogTitle>
+                            Document Preview - {selectedDocument?.certificate}
+                        </DialogTitle>
+                    </DialogHeader>
+                    <div className="overflow-auto max-h-[calc(90vh-120px)]">
+                        <div className="flex justify-center">
+                            <img
+                                src={selectedDocument?.documentUrl}
+                                alt={selectedDocument?.certificate}
+                                className="max-w-full h-auto border rounded-md shadow-sm"
+                            />
                         </div>
                     </div>
-                </div>
-            )}
-
-            <style jsx global>{`
-        .font-inter {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-        }
-        .font-playfair {
-          font-family: 'Playfair Display', Georgia, serif;
-        }
-      `}</style>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }
