@@ -22,9 +22,9 @@ export default function LoginSelector() {
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
               {/* Logo and College Info */}
               <div className="flex items-center gap-3 sm:gap-4 flex-1 order-1 sm:order-none">
-                <img 
-                  src="/src/Assets/upescc.jpeg" 
-                  alt="College Logo" 
+                <img
+                  src="/src/Assets/upescc.jpeg"
+                  alt="College Logo"
                   className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain rounded-lg bg-white/10 p-1"
                 />
                 <div className="text-center sm:text-left">
@@ -100,9 +100,9 @@ export default function LoginSelector() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center h-full max-w-7xl mx-auto">
             {/* Left Side - Full Image */}
             <div className="flex items-center justify-center px-2 sm:px-4 lg:pl-8 order-1">
-              <img 
-                src="/src/Assets/up.png" 
-                alt="University Portal" 
+              <img
+                src="/src/Assets/up.png"
+                alt="University Portal"
                 className="w-full h-auto max-w-full object-contain"
               />
             </div>

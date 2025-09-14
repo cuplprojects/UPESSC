@@ -9,16 +9,18 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Verification = () => {
     const [rollNumber, setRollNumber] = useState("");
     const [isLoaded, setIsLoaded] = useState(false);
     const [selectedDocument, setSelectedDocument] = useState(null);
     const { toast } = useToast();
+    const { language, setLanguage, t } = useLanguage();
     const [certificates, setCertificates] = useState([
         {
             sn: 1,
-            certificate: "Two self attested copies of application form",
+            certificateKey: "verification.cert1",
             status: null, // null = not decided, true = yes, false = no
             rejectionReason: "",
             documentUrl:
@@ -26,8 +28,7 @@ const Verification = () => {
         },
         {
             sn: 2,
-            certificate:
-                "Two self attested copies of college preference in Anx-3 Format",
+            certificateKey: "verification.cert2",
             status: null,
             rejectionReason: "",
             documentUrl:
@@ -35,7 +36,7 @@ const Verification = () => {
         },
         {
             sn: 3,
-            certificate: "Original mark sheet of qualifying examination",
+            certificateKey: "verification.cert3",
             status: null,
             rejectionReason: "",
             documentUrl:
@@ -43,7 +44,7 @@ const Verification = () => {
         },
         {
             sn: 4,
-            certificate: "Character certificate from head of institution",
+            certificateKey: "verification.cert4",
             status: null,
             rejectionReason: "",
             documentUrl:
@@ -51,7 +52,7 @@ const Verification = () => {
         },
         {
             sn: 5,
-            certificate: "Migration certificate (if applicable)",
+            certificateKey: "verification.cert5",
             status: null,
             rejectionReason: "",
             documentUrl:
@@ -101,8 +102,8 @@ const Verification = () => {
 
     const handleSubmit = () => {
         toast({
-            title: "Verification Submitted",
-            description: "Certificate verification has been submitted successfully.",
+            title: t("verification.submitted"),
+            description: t("verification.submittedDesc"),
             variant: "default",
         });
         // Reset form
@@ -135,11 +136,10 @@ const Verification = () => {
                 {/* Header Section */}
                 <div className="mb-8">
                     <h1 className="text-3xl md:text-4xl font-semibold text-foreground mb-4">
-                        Certificate Verification
+                        {t("verification.title")}
                     </h1>
                     <p className="text-muted-foreground max-w-2xl">
-                        Enter the candidate's roll number to view and verify their submitted
-                        certificates and documents.
+                        {t("verification.subtitle")}
                     </p>
                 </div>
 
@@ -149,7 +149,7 @@ const Verification = () => {
                         <div className="flex flex-col sm:flex-row gap-4 items-end">
                             <div className="flex-1">
                                 <Label htmlFor="rollNumber" className="text-sm font-medium mb-2 block">
-                                    Candidate Roll Number
+                                    {t("verification.rollNumber")}
                                 </Label>
                                 <Input
                                     id="rollNumber"
@@ -157,7 +157,7 @@ const Verification = () => {
                                     value={rollNumber}
                                     onChange={(e) => setRollNumber(e.target.value)}
                                     onKeyPress={handleKeyPress}
-                                    placeholder="Enter roll number (e.g., 2024001)"
+                                    placeholder={t("verification.rollNumberPlaceholder")}
                                     className="w-full"
                                 />
                             </div>
@@ -167,7 +167,7 @@ const Verification = () => {
                                 className="bg-[#050C9C] hover:bg-[#050C9C]/90 text-white"
                             >
                                 <Search className="w-4 h-4 mr-2 " />
-                                Search
+                                {t("verification.search")}
                             </Button>
                         </div>
                     </CardContent>
@@ -178,7 +178,7 @@ const Verification = () => {
                     <Card>
                         <CardHeader>
                             <CardTitle className="text-lg">
-                                Verification for Roll Number: {rollNumber}
+                                {t("verification.verificationFor")} {rollNumber}
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
@@ -186,10 +186,10 @@ const Verification = () => {
                                 <Table>
                                     <TableHeader>
                                         <TableRow>
-                                            <TableHead className="w-20">Sr. No.</TableHead>
-                                            <TableHead>Certificate</TableHead>
-                                            <TableHead className="text-center w-32">View</TableHead>
-                                            <TableHead className="text-center w-48">Verification</TableHead>
+                                            <TableHead className="w-20">{t("verification.srNo")}</TableHead>
+                                            <TableHead>{t("verification.certificate")}</TableHead>
+                                            <TableHead className="text-center w-32">{t("verification.view")}</TableHead>
+                                            <TableHead className="text-center w-48">{t("verification.verification")}</TableHead>
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
@@ -201,17 +201,17 @@ const Verification = () => {
                                                     </TableCell>
                                                     <TableCell>
                                                         <div className="flex items-center gap-2">
-                                                            {cert.certificate}
+                                                            {t(cert.certificateKey)}
                                                             {cert.status === true && (
                                                                 <Badge variant="default" className="bg-green-500">
                                                                     <Check className="w-3 h-3 mr-1" />
-                                                                    Approved
+                                                                    {t("verification.approved")}
                                                                 </Badge>
                                                             )}
                                                             {cert.status === false && (
                                                                 <Badge variant="destructive" className={"bg-red-500 text-white"}>
                                                                     <X className="w-3 h-3 mr-1" />
-                                                                    Rejected
+                                                                    {t("verification.rejected")}
                                                                 </Badge>
                                                             )}
                                                         </div>
@@ -223,7 +223,7 @@ const Verification = () => {
                                                             onClick={() => handleViewDocument(cert)}
                                                         >
                                                             <Eye className="w-4 h-4 mr-2" />
-                                                            View
+                                                            {t("verification.view")}
                                                         </Button>
                                                     </TableCell>
                                                     <TableCell className="text-center">
@@ -235,7 +235,7 @@ const Verification = () => {
                                                                 className={cert.status === true ? "bg-green-500 hover:bg-green-600" : ""}
                                                             >
                                                                 <Check className="w-4 h-4 mr-1" />
-                                                                Yes
+                                                                {t("verification.yes")}
                                                             </Button>
                                                             <Button
                                                                 variant={cert.status === false ? "destructive" : "outline"}
@@ -243,7 +243,7 @@ const Verification = () => {
                                                                 onClick={() => handleStatusChange(index, false)}
                                                             >
                                                                 <X className="w-4 h-4 mr-1" />
-                                                                No
+                                                                {t("verification.no")}
                                                             </Button>
                                                         </div>
                                                     </TableCell>
@@ -255,7 +255,7 @@ const Verification = () => {
                                                         <TableCell colSpan={3}>
                                                             <div className="flex flex-col gap-2">
                                                                 <Label className="text-xs text-destructive font-medium">
-                                                                    Reason for Rejection (Required)
+                                                                    {t("verification.rejectionReason")}
                                                                 </Label>
                                                                 <Textarea
                                                                     value={cert.rejectionReason}
@@ -265,7 +265,7 @@ const Verification = () => {
                                                                             e.target.value,
                                                                         )
                                                                     }
-                                                                    placeholder="Please provide a reason for rejecting this certificate..."
+                                                                    placeholder={t("verification.rejectionPlaceholder")}
                                                                     className="resize-none"
                                                                     rows={2}
                                                                 />
@@ -289,14 +289,14 @@ const Verification = () => {
                                                 <>
                                                     <Check className="w-4 h-4 text-green-600" />
                                                     <span className="text-green-600 font-medium">
-                                                        All certificates verified and ready to submit
+                                                        {t("verification.allVerified")}
                                                     </span>
                                                 </>
                                             ) : (
                                                 <>
                                                     <AlertTriangle className="w-4 h-4 text-destructive" />
                                                     <span className="text-destructive font-medium">
-                                                        Please provide rejection reasons for all rejected certificates
+                                                        {t("verification.provideReasons")}
                                                     </span>
                                                 </>
                                             )
@@ -304,7 +304,7 @@ const Verification = () => {
                                             <>
                                                 <AlertTriangle className="w-4 h-4 text-orange-600" />
                                                 <span className="text-orange-600 font-medium">
-                                                    Please verify all certificates before submitting
+                                                    {t("verification.verifyAll")}
                                                 </span>
                                             </>
                                         )}
@@ -316,7 +316,7 @@ const Verification = () => {
                                         disabled={isSubmitDisabled}
                                         className="bg-[#050C9C] hover:bg-[#050C9C]/90 text-white"
                                     >
-                                        Submit Verification
+                                        {t("verification.submit")}
                                     </Button>
                                 </div>
                             </div>
@@ -331,11 +331,10 @@ const Verification = () => {
                             <div className="max-w-md mx-auto">
                                 <Search className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
                                 <h3 className="text-lg font-semibold text-foreground mb-2">
-                                    Enter Roll Number to Begin
+                                    {t("verification.enterRollNumber")}
                                 </h3>
                                 <p className="text-sm text-muted-foreground">
-                                    Please enter a candidate's roll number in the search field above
-                                    to view their certificates for verification.
+                                    {t("verification.enterRollNumberDesc")}
                                 </p>
                             </div>
                         </CardContent>
@@ -348,14 +347,14 @@ const Verification = () => {
                 <DialogContent className="max-w-4xl max-h-[90vh]">
                     <DialogHeader>
                         <DialogTitle>
-                            Document Preview - {selectedDocument?.certificate}
+                            {t("verification.documentPreview")} - {selectedDocument?.certificateKey ? t(selectedDocument.certificateKey) : ''}
                         </DialogTitle>
                     </DialogHeader>
                     <div className="overflow-auto max-h-[calc(90vh-120px)]">
                         <div className="flex justify-center">
                             <img
                                 src={selectedDocument?.documentUrl}
-                                alt={selectedDocument?.certificate}
+                                alt={selectedDocument?.certificateKey ? t(selectedDocument.certificateKey) : ''}
                                 className="max-w-full h-auto border rounded-md shadow-sm"
                             />
                         </div>

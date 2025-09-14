@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "wouter";
-import { useAuth } from "@/hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { PreferencesSection } from "@/components/sections/PreferencesSection";
@@ -9,9 +8,9 @@ import { PaymentSection } from "@/components/sections/PaymentSection";
 import { PrintSection } from "@/components/sections/PrintSection";
 
 export default function Home({ sidebarOpen, setSidebarOpen }) {
-  const { isAuthenticated, isLoading, user } = useAuth();
   const { toast } = useToast();
-  const [location, setLocation] = useLocation();
+  const navigate = useNavigate();
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const [currentStep, setCurrentStep] = useState(1);
   const [completionStatus, setCompletionStatus] = useState({
     preferences: false,
@@ -29,42 +28,17 @@ export default function Home({ sidebarOpen, setSidebarOpen }) {
     "/print": 4
   };
 
-  // Show welcome message and redirect to preferences if on root path after login
+  // Redirect root to preferences on first load for consistency
   useEffect(() => {
-    if (isAuthenticated && location === "/") {
-      toast({
-        title: "Welcome!",
-        description: "You have successfully logged in. Let's complete your application.",
-        variant: "default",
-      });
-      setLocation("/preferences");
+    if (window.location.pathname === "/") {
+      navigate("/preferences", { replace: true });
+      setCurrentPath("/preferences");
+    } else {
+      setCurrentPath(window.location.pathname);
     }
-  }, [isAuthenticated, location, setLocation]);
+  }, [navigate]);
 
-  // Update completion status based on user data
-  useEffect(() => {
-    if (user) {
-      const newCompletionStatus = {
-        preferences: user.preferencesCompleted || false,
-        documents: user.documentsCompleted || false,
-        documentsVerified: user.documentsVerified || false,
-        payment: user.paymentCompleted || false
-      };
-      
-      setCompletionStatus(newCompletionStatus);
-
-      // Set current step based on completion
-      if (!user.preferencesCompleted) {
-        setCurrentStep(1);
-      } else if (!user.documentsCompleted) {
-        setCurrentStep(2);
-      } else if (!user.paymentCompleted) {
-        setCurrentStep(3);
-      } else {
-        setCurrentStep(4); // All completed
-      }
-    }
-  }, [user, user?.documentsCompleted, user?.preferencesCompleted, user?.paymentCompleted]);
+  // No auth-bound user state; keep default completion status.
 
   const sectionToRoute = {
     1: "/preferences",
@@ -73,12 +47,13 @@ export default function Home({ sidebarOpen, setSidebarOpen }) {
     4: "/print"
   };
 
-  const activeSection = routeToSection[location] || currentStep;
+  const activeSection = routeToSection[currentPath] || currentStep;
 
   const handleSectionChange = (section) => {
     const route = sectionToRoute[section];
     if (route) {
-      setLocation(route);
+      navigate(route);
+      setCurrentPath(route);
     }
   };
 
@@ -86,38 +61,29 @@ export default function Home({ sidebarOpen, setSidebarOpen }) {
     if (activeSection === 1) {
       setCompletionStatus(prev => ({ ...prev, preferences: true }));
       setCurrentStep(2);
-      setLocation("/documents");
+      navigate("/documents");
+      setCurrentPath("/documents");
     } else if (activeSection === 2) {
       // Only mark documents complete if they are verified
       if (data?.documentsVerified) {
         setCompletionStatus(prev => ({ ...prev, documents: true, documentsVerified: true }));
         setCurrentStep(3);
-        setLocation("/payment");
+        navigate("/payment");
+        setCurrentPath("/payment");
       } else {
         setCompletionStatus(prev => ({ ...prev, documents: true }));
       }
     } else if (activeSection === 3) {
       setCompletionStatus(prev => ({ ...prev, payment: true }));
       setCurrentStep(4);
-      setLocation("/print");
+      navigate("/print");
+      setCurrentPath("/print");
     }
   };
 
   const handleSidebarClose = () => {
     setSidebarOpen(false);
   };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg" data-testid="text-loading">Loading...</div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return null; // Will redirect via useEffect
-  }
 
   const renderActiveSection = () => {
     switch (activeSection) {
