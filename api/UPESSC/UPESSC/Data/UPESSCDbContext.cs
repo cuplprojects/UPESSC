@@ -17,6 +17,10 @@ namespace UPESSC.Data
         public DbSet<User> Users { get; set; }
         public DbSet<ExaminationMasters> ExaminationMasters { get; set; }
         public DbSet<CandidateInstitutePreference> CandidateInstitutePreferences { get; set; }
+        public DbSet<Boards> Boards { get; set; }
+        public DbSet<ExpertsMaster> ExpertsMasters { get; set; }
+        public DbSet<BoardCM> BoardCMs { get; set; }
+        public DbSet<SubjectSchedule> SubjectSchedules { get; set; }
 
     }
 }

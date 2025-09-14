@@ -1,16 +1,20 @@
-git ui/node_modules
-ui/dist
+# UI build artifacts
+ui/node_modules/
+ui/dist/
 
+# Visual Studio / VS Code
 .vs/
+.vscode/
 
+# .NET build artifacts
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
 
-api/UPESSC/UPESSC/bin
-api/UPESSC/UPESSC/obj
-api/UPESSC/.vs
+# .NET specific
 *.dll
-*.dll
-api/UPESSC/UPESSC/bin/Debug/net8.0/AWSSDK.Core.dll
-api/UPESSC/UPESSC/bin/Debug/net8.0/AWSSDK.Core.dll
-*.dll
-api/UPESSC/UPESSC/bin/Debug/net8.0/AWSSDK.Core.dll
-api/UPESSC/UPESSC/bin/Debug/net8.0/Azure.Core.dll
+*.exe
+*.pdb
+*.cache
+*.tmp
