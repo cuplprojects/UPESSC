@@ -3,16 +3,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UPESSC.Models
 {
-    public class Subject
+    public class CandidateInstitutePreference
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int SID { get; set; }
+        public int CIPID { get; set; }
 
-        public string SubjectCode { get; set; }
+        public int CID { get; set; }
 
-        public string SubjectName { get; set; }
+        public int IID { get; set; }
 
-        public string SubjectNameEnglish { get; set; }
+        public int PreferenceOrder { get; set; }
     }
 }

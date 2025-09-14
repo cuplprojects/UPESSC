@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPESSC.Data;
 
@@ -11,9 +12,11 @@ using UPESSC.Data;
 namespace UPESSC.Migrations
 {
     [DbContext(typeof(UPESSCDbContext))]
-    partial class UPESSCDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250913190154_CandidateUpdate2")]
+    partial class CandidateUpdate2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,8 +135,8 @@ namespace UPESSC.Migrations
                     b.Property<string>("Permanent_District")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Permanent_Postal_Code")
-                        .HasColumnType("longtext");
+                    b.Property<int?>("Permanent_Postal_Code")
+                        .HasColumnType("int");
 
                     b.Property<string>("Permanent_State")
                         .HasColumnType("longtext");
@@ -144,11 +147,8 @@ namespace UPESSC.Migrations
                     b.Property<string>("Photo_File")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Postal_Code")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("RollNumber")
-                        .HasColumnType("longtext");
+                    b.Property<int?>("Postal_Code")
+                        .HasColumnType("int");
 
                     b.Property<string>("SLET_Subject")
                         .HasColumnType("longtext");
@@ -234,28 +234,6 @@ namespace UPESSC.Migrations
                     b.ToTable("CandidateEducationalQualifications");
                 });
 
-            modelBuilder.Entity("UPESSC.Models.CandidateInstitutePreference", b =>
-                {
-                    b.Property<int>("CIPID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CIPID"));
-
-                    b.Property<int>("CID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PreferenceOrder")
-                        .HasColumnType("int");
-
-                    b.HasKey("CIPID");
-
-                    b.ToTable("CandidateInstitutePreferences");
-                });
-
             modelBuilder.Entity("UPESSC.Models.ExaminationMasters", b =>
                 {
                     b.Property<int>("ExaminationID")
@@ -312,10 +290,6 @@ namespace UPESSC.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("SubjectName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("SubjectNameEnglish")
                         .IsRequired()
                         .HasColumnType("longtext");
 

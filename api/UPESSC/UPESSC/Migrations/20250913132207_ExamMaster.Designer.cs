@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPESSC.Data;
 
@@ -11,9 +12,11 @@ using UPESSC.Data;
 namespace UPESSC.Migrations
 {
     [DbContext(typeof(UPESSCDbContext))]
-    partial class UPESSCDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250913132207_ExamMaster")]
+    partial class ExamMaster
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,154 +33,55 @@ namespace UPESSC.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CID"));
 
-                    b.Property<string>("Aadhaar_No")
+                    b.Property<string>("CandidateName")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Address_Line1")
+                    b.Property<string>("Category")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Address_Line2")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Address_Line3")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Address_Line4")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Address_Line5")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Category_Code")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Created_Date")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("DFF")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Date_of_Birth")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("District")
+                    b.Property<string>("DOB")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Email")
                         .HasColumnType("longtext");
 
-                    b.Property<long>("Enrollment_No")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Father_Name")
+                    b.Property<string>("FatherOrHusbandName")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Gender")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Husband_Name")
+                    b.Property<string>("InterviewBoard")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("JRF_Subject")
+                    b.Property<string>("InterviewDate")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Marital_Status")
+                    b.Property<string>("MaritalStatus")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("MobileNo")
+                    b.Property<string>("MobileNumber")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Mother_Name")
+                    b.Property<string>("ProfileImage")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("NET_Subject")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("PG_Before_91")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("PH")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Payment_Date")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Payment_ID")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Payment_Mode")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Payment_Status")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Permanent_Address_Line1")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Permanent_Address_Line2")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Permanent_Address_Line3")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Permanent_Address_Line4")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Permanent_Address_Line5")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Permanent_District")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Permanent_Postal_Code")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Permanent_State")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Phd_Subject")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Photo_File")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Postal_Code")
+                    b.Property<string>("RegistrationNumber")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("RollNumber")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("SLET_Subject")
+                    b.Property<string>("SubCategory")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Sign_File")
+                    b.Property<string>("Subject")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("State")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Sub_Subject")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Subject_Name")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("UP_Resident")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("is_JRF")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("is_NET")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("is_Phd")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("is_SLET_SET")
+                    b.Property<string>("SubjectCode")
                         .HasColumnType("longtext");
 
                     b.HasKey("CID");
@@ -232,28 +136,6 @@ namespace UPESSC.Migrations
                     b.HasKey("CEQID");
 
                     b.ToTable("CandidateEducationalQualifications");
-                });
-
-            modelBuilder.Entity("UPESSC.Models.CandidateInstitutePreference", b =>
-                {
-                    b.Property<int>("CIPID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CIPID"));
-
-                    b.Property<int>("CID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PreferenceOrder")
-                        .HasColumnType("int");
-
-                    b.HasKey("CIPID");
-
-                    b.ToTable("CandidateInstitutePreferences");
                 });
 
             modelBuilder.Entity("UPESSC.Models.ExaminationMasters", b =>
@@ -312,10 +194,6 @@ namespace UPESSC.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("SubjectName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("SubjectNameEnglish")
                         .IsRequired()
                         .HasColumnType("longtext");
 

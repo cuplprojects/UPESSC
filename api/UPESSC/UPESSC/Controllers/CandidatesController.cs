@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using CsvHelper.Configuration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +16,8 @@ using Org.BouncyCastle.Asn1.Ocsp;
 using UPESSC.Data;
 using UPESSC.Models;
 using UPESSC.Services;
+using CsvHelper;
+using OfficeOpenXml;
 
 namespace UPESSC.Controllers
 {
@@ -116,7 +120,7 @@ namespace UPESSC.Controllers
             "23Dbspl74@"
         );
 
-            string mobileNumber = candidate.MobileNumber;
+            string mobileNumber = candidate.MobileNo;
             string message = $"{otp} is OTP for UPESSC Login REGNOW";
             string templateId = "1207161207955867884";
 
@@ -161,6 +165,208 @@ namespace UPESSC.Controllers
             }
             else
                 return Unauthorized("USER NOT FOUND OR NOT VERIFIED");
+        }
+
+        /*[HttpPost("Import")]
+        [RequestFormLimits(MultipartBodyLengthLimit = 200_000_000)]
+        [RequestSizeLimit(200_000_000)]
+        public async Task<IActionResult> ImportCandidates([FromForm] CandidateImport candidateImport)
+        {
+            var file = candidateImport.formFile;
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded.");
+
+            var importedCandidates = new List<Candidate>();
+
+            using (var stream = file.OpenReadStream())
+            using (var reader = new StreamReader(stream))
+            using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HasHeaderRecord = true,
+                TrimOptions = TrimOptions.Trim,
+                IgnoreBlankLines = true,
+            }))
+            {
+                importedCandidates = csv.GetRecords<Candidate>().ToList();
+            }
+
+            // ✅ Basic Validation: Ensure Enrollment_No is valid
+            var validCandidates = importedCandidates
+                .Where(c => c.Enrollment_No > 0)
+                .ToList();
+
+            // ✅ Avoid duplicates: skip Enrollment_No that already exist
+            var existingEnrollments = await _context.Candidates
+                .Select(c => c.Enrollment_No)
+                .ToListAsync();
+
+            var newCandidates = validCandidates
+                .Where(c => !existingEnrollments.Contains(c.Enrollment_No))
+                .ToList();
+
+            if (!newCandidates.Any())
+                return Ok(new { Message = "No new candidates to import." });
+
+            _context.Candidates.AddRange(newCandidates);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                ImportedCount = newCandidates.Count,
+                SkippedCount = validCandidates.Count - newCandidates.Count,
+                Message = "Candidates imported successfully."
+            });
+        }*/
+
+        [HttpPost("Import")]
+        [RequestFormLimits(MultipartBodyLengthLimit = 200_000_000)]
+        [RequestSizeLimit(200_000_000)]
+        public async Task<IActionResult> ImportCandidates([FromForm] CandidateImport candidateImport)
+        {
+            var file = candidateImport.formFile;
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded.");
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            var importedCandidates = new List<Candidate>();
+
+            using (var stream = file.OpenReadStream())
+            using (var package = new ExcelPackage(stream))
+            {
+                var worksheet = package.Workbook.Worksheets.FirstOrDefault();
+                if (worksheet == null)
+                    return BadRequest("No worksheet found in the file.");
+
+                int rowCount = worksheet.Dimension.Rows;
+                int colCount = worksheet.Dimension.Columns;
+
+                // ✅ Read header row dynamically
+                var headers = new List<string>();
+                for (int col = 1; col <= colCount; col++)
+                    headers.Add(worksheet.Cells[1, col].Text.Trim());
+
+                // ✅ Read data rows (start from row 2)
+                for (int row = 2; row <= rowCount; row++)
+                {
+                    try
+                    {
+                        var candidate = new Candidate
+                        {
+                            Enrollment_No = TryParseLong(GetValue(worksheet, headers, row, "Enrollment_No")),
+                            Subject_Name = GetValue(worksheet, headers, row, "Subject_Name"),
+                            Sub_Subject = GetValue(worksheet, headers, row, "Sub_Subject"),
+                            Name = GetValue(worksheet, headers, row, "Name"),
+                            Father_Name = GetValue(worksheet, headers, row, "Father_Name"),
+                            Husband_Name = GetValue(worksheet, headers, row, "Husband_Name"),
+                            Mother_Name = GetValue(worksheet, headers, row, "Mother_Name"),
+                            Date_of_Birth = GetValue(worksheet, headers, row, "Date_of_Birth"),
+                            Marital_Status = GetValue(worksheet, headers, row, "Marital_Status"),
+                            Gender = GetValue(worksheet, headers, row, "Gender"),
+                            Aadhaar_No = (GetValue(worksheet, headers, row, "Aadhaar_No")),
+                            DFF = GetValue(worksheet, headers, row, "DFF"),
+                            PH = GetValue(worksheet, headers, row, "PH"),
+                            PG_Before_91 = GetValue(worksheet, headers, row, "PG_Before_91"),
+                            UP_Resident = GetValue(worksheet, headers, row, "UP_Resident"),
+                            Category_Code = GetValue(worksheet, headers, row, "Category_Code"),
+                            Address_Line1 = GetValue(worksheet, headers, row, "Address_Line1"),
+                            Address_Line2 = GetValue(worksheet, headers, row, "Address_Line2"),
+                            Address_Line3 = GetValue(worksheet, headers, row, "Address_Line3"),
+                            Address_Line4 = GetValue(worksheet, headers, row, "Address_Line4"),
+                            Address_Line5 = GetValue(worksheet, headers, row, "Address_Line5"),
+                            State = GetValue(worksheet, headers, row, "State"),
+                            District = GetValue(worksheet, headers, row, "District"),
+                            Postal_Code =GetValue(worksheet, headers, row, "Postal_Code"),
+                            Permanent_Address_Line1 = GetValue(worksheet, headers, row, "Permanent_Address_Line1"),
+                            Permanent_Address_Line2 = GetValue(worksheet, headers, row, "Permanent_Address_Line2"),
+                            Permanent_Address_Line3 = GetValue(worksheet, headers, row, "Permanent_Address_Line3"),
+                            Permanent_Address_Line4 = GetValue(worksheet, headers, row, "Permanent_Address_Line4"),
+                            Permanent_Address_Line5 = GetValue(worksheet, headers, row, "Permanent_Address_Line5"),
+                            Permanent_State = GetValue(worksheet, headers, row, "Permanent_State"),
+                            Permanent_District = GetValue(worksheet, headers, row, "Permanent_District"),
+                            Permanent_Postal_Code =GetValue(worksheet, headers, row, "Permanent_Postal_Code"),
+                            Email = GetValue(worksheet, headers, row, "Email"),
+                            MobileNo = GetValue(worksheet, headers, row, "MobileNo"),
+                            is_SLET_SET = GetValue(worksheet, headers, row, "is_SLET_SET"),
+                            SLET_Subject = GetValue(worksheet, headers, row, "SLET_Subject"),
+                            is_NET = GetValue(worksheet, headers, row, "is_NET"),
+                            NET_Subject = GetValue(worksheet, headers, row, "NET_Subject"),
+                            is_JRF = GetValue(worksheet, headers, row, "is_JRF"),
+                            JRF_Subject = GetValue(worksheet, headers, row, "JRF_Subject"),
+                            is_Phd = GetValue(worksheet, headers, row, "is_Phd"),
+                            Phd_Subject = GetValue(worksheet, headers, row, "Phd_Subject"),
+                            Photo_File = GetValue(worksheet, headers, row, "Photo_File"),
+                            Sign_File = GetValue(worksheet, headers, row, "Sign_File"),
+                            Payment_Status = GetValue(worksheet, headers, row, "Payment_Status"),
+                            Payment_ID = GetValue(worksheet, headers, row, "Payment_ID"),
+                            Created_Date = GetValue(worksheet, headers, row, "Created_Date"),
+                            Payment_Date = GetValue(worksheet, headers, row, "Payment_Date"),
+                            Payment_Mode = GetValue(worksheet, headers, row, "Payment_Mode"),
+                            RollNumber = GetValue(worksheet, headers, row, "RollNumber")
+                        };
+
+                        if (candidate.Enrollment_No > 0)
+                            importedCandidates.Add(candidate);
+                    }
+                    catch
+                    {
+                        // Skip any row with bad data
+                        continue;
+                    }
+                }
+            }
+
+            // ✅ Remove duplicates (based on Enrollment_No)
+            var existingEnrollments = await _context.Candidates
+                .Select(c => c.Enrollment_No)
+                .ToListAsync();
+
+            var newCandidates = importedCandidates
+                .Where(c => !existingEnrollments.Contains(c.Enrollment_No))
+                .ToList();
+
+            if (!newCandidates.Any())
+                return Ok(new { Message = "No new candidates to import." });
+
+            _context.Candidates.AddRange(newCandidates);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                ImportedCount = newCandidates.Count,
+                SkippedCount = importedCandidates.Count - newCandidates.Count,
+                Message = "Candidates imported successfully from Excel."
+            });
+        }
+
+        /// <summary> Helper: Safely get a cell value by header name </summary>
+        private string GetValue(ExcelWorksheet ws, List<string> headers, int row, string headerName)
+        {
+            int index = headers.IndexOf(headerName);
+            if (index == -1) return string.Empty;
+            return ws.Cells[row, index + 1].Text?.Trim();
+        }
+
+        private int? TryParseInt(string input)
+        {
+            if (int.TryParse(input, out int result))
+                return result;
+            return null;
+        }
+
+        private long TryParseLong(string input)
+        {
+            if (long.TryParse(input, out long result))
+                return result;
+            return 0;
+        }
+
+        private int? CleanPostalCode(string postalCode)
+        {
+            if (string.IsNullOrWhiteSpace(postalCode)) return null;
+            postalCode = postalCode.Replace("O", "0").Replace("o", "0"); // OCR Fix
+            if (int.TryParse(postalCode, out int result)) return result;
+            return null;
         }
 
         // DELETE: api/Candidates/5
@@ -221,5 +427,9 @@ namespace UPESSC.Controllers
     {
         public int UID { get; set; }
         public bool IsVerified { get; set; }
+    }
+    public class CandidateImport
+    {
+        public IFormFile formFile { get; set; }
     }
 }
