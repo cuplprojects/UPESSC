@@ -271,6 +271,191 @@
         }
       }
     },
+    "/api/CandidateInstitutePreferences": {
+      "get": {
+        "tags": [
+          "CandidateInstitutePreferences"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CandidateInstitutePreference"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CandidateInstitutePreference"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CandidateInstitutePreference"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "CandidateInstitutePreferences"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateInstitutePreference"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateInstitutePreference"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateInstitutePreference"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidateInstitutePreference"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidateInstitutePreference"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidateInstitutePreference"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CandidateInstitutePreferences/{id}": {
+      "get": {
+        "tags": [
+          "CandidateInstitutePreferences"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidateInstitutePreference"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidateInstitutePreference"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidateInstitutePreference"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "CandidateInstitutePreferences"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateInstitutePreference"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateInstitutePreference"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateInstitutePreference"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "CandidateInstitutePreferences"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Candidates": {
       "get": {
         "tags": [
@@ -535,6 +720,223 @@
         }
       }
     },
+    "/api/Candidates/Import": {
+      "post": {
+        "tags": [
+          "Candidates"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "formFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "formFile": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ExaminationMasters": {
+      "get": {
+        "tags": [
+          "ExaminationMasters"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExaminationMasters"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExaminationMasters"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExaminationMasters"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ExaminationMasters"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExaminationMasters"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExaminationMasters"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExaminationMasters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExaminationMasters"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExaminationMasters"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExaminationMasters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ExaminationMasters/{id}": {
+      "get": {
+        "tags": [
+          "ExaminationMasters"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExaminationMasters"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExaminationMasters"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExaminationMasters"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ExaminationMasters"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExaminationMasters"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExaminationMasters"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExaminationMasters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ExaminationMasters"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Institutes": {
       "get": {
         "tags": [
@@ -748,6 +1150,63 @@
         "responses": {
           "200": {
             "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Institutes/GetInsitutesbyUserID": {
+      "post": {
+        "tags": [
+          "Institutes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstitutGetRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstitutGetRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstitutGetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Institute"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Institute"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Institute"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -1212,19 +1671,39 @@
             "type": "integer",
             "format": "int32"
           },
-          "rollNumber": {
+          "enrollment_No": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "subject_Name": {
             "type": "string",
             "nullable": true
           },
-          "registrationNumber": {
+          "sub_Subject": {
             "type": "string",
             "nullable": true
           },
-          "candidateName": {
+          "name": {
             "type": "string",
             "nullable": true
           },
-          "dob": {
+          "father_Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "husband_Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "mother_Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "marital_Status": {
+            "type": "string",
+            "nullable": true
+          },
+          "date_of_Birth": {
             "type": "string",
             "nullable": true
           },
@@ -1232,27 +1711,91 @@
             "type": "string",
             "nullable": true
           },
-          "profileImage": {
+          "aadhaar_No": {
             "type": "string",
             "nullable": true
           },
-          "category": {
+          "dff": {
             "type": "string",
             "nullable": true
           },
-          "subCategory": {
+          "ph": {
             "type": "string",
             "nullable": true
           },
-          "maritalStatus": {
+          "pG_Before_91": {
             "type": "string",
             "nullable": true
           },
-          "fatherOrHusbandName": {
+          "uP_Resident": {
             "type": "string",
             "nullable": true
           },
-          "mobileNumber": {
+          "category_Code": {
+            "type": "string",
+            "nullable": true
+          },
+          "address_Line1": {
+            "type": "string",
+            "nullable": true
+          },
+          "address_Line2": {
+            "type": "string",
+            "nullable": true
+          },
+          "address_Line3": {
+            "type": "string",
+            "nullable": true
+          },
+          "address_Line4": {
+            "type": "string",
+            "nullable": true
+          },
+          "address_Line5": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "district": {
+            "type": "string",
+            "nullable": true
+          },
+          "postal_Code": {
+            "type": "string",
+            "nullable": true
+          },
+          "permanent_Address_Line1": {
+            "type": "string",
+            "nullable": true
+          },
+          "permanent_Address_Line2": {
+            "type": "string",
+            "nullable": true
+          },
+          "permanent_Address_Line3": {
+            "type": "string",
+            "nullable": true
+          },
+          "permanent_Address_Line4": {
+            "type": "string",
+            "nullable": true
+          },
+          "permanent_Address_Line5": {
+            "type": "string",
+            "nullable": true
+          },
+          "permanent_State": {
+            "type": "string",
+            "nullable": true
+          },
+          "permanent_District": {
+            "type": "string",
+            "nullable": true
+          },
+          "permanent_Postal_Code": {
             "type": "string",
             "nullable": true
           },
@@ -1260,19 +1803,71 @@
             "type": "string",
             "nullable": true
           },
-          "subjectCode": {
+          "mobileNo": {
             "type": "string",
             "nullable": true
           },
-          "subject": {
+          "is_SLET_SET": {
             "type": "string",
             "nullable": true
           },
-          "interviewBoard": {
+          "sleT_Subject": {
             "type": "string",
             "nullable": true
           },
-          "interviewDate": {
+          "is_NET": {
+            "type": "string",
+            "nullable": true
+          },
+          "neT_Subject": {
+            "type": "string",
+            "nullable": true
+          },
+          "is_JRF": {
+            "type": "string",
+            "nullable": true
+          },
+          "jrF_Subject": {
+            "type": "string",
+            "nullable": true
+          },
+          "is_Phd": {
+            "type": "string",
+            "nullable": true
+          },
+          "phd_Subject": {
+            "type": "string",
+            "nullable": true
+          },
+          "photo_File": {
+            "type": "string",
+            "nullable": true
+          },
+          "sign_File": {
+            "type": "string",
+            "nullable": true
+          },
+          "payment_Status": {
+            "type": "string",
+            "nullable": true
+          },
+          "payment_ID": {
+            "type": "string",
+            "nullable": true
+          },
+          "created_Date": {
+            "type": "string",
+            "nullable": true
+          },
+          "payment_Date": {
+            "type": "string",
+            "nullable": true
+          },
+          "payment_Mode": {
+            "type": "string",
+            "nullable": true
+          },
+          "rollNumber": {
             "type": "string",
             "nullable": true
           }
@@ -1337,12 +1932,58 @@
         },
         "additionalProperties": false
       },
+      "CandidateInstitutePreference": {
+        "type": "object",
+        "properties": {
+          "cipid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "iid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "preferenceOrder": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "CandidateLoginRequest": {
         "type": "object",
         "properties": {
           "rollNumber": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExaminationMasters": {
+        "type": "object",
+        "properties": {
+          "examinationID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "examName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstitutGetRequest": {
+        "type": "object",
+        "properties": {
+          "cid": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1399,6 +2040,10 @@
             "nullable": true
           },
           "subjectName": {
+            "type": "string",
+            "nullable": true
+          },
+          "subjectNameEnglish": {
             "type": "string",
             "nullable": true
           }

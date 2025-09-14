@@ -30,7 +30,7 @@ export function Sidebar({
     icon: GraduationCap,
     status: applicationStatus?.preferences ? "completed" : activeSection === 1 ? "active" : "pending",
     statusText: applicationStatus?.preferences ? t('progress.completed') : activeSection === 1 ? t('progress.inProgress') : t('progress.pending'),
-    isEnabled: true, // ✅ always enabled
+    isEnabled: !applicationStatus?.preferences, // Lock if submitted
   },
   {
     id: 2,
@@ -38,7 +38,7 @@ export function Sidebar({
     icon: FileUp,
     status: applicationStatus?.documents ? "completed" : activeSection === 2 ? "active" : "pending",
     statusText: applicationStatus?.documents ? t('progress.completed') : activeSection === 2 ? t('progress.inProgress') : t('progress.pending'),
-    isEnabled: true, // ✅ always enabled
+    isEnabled: !applicationStatus?.documents, // Lock if submitted
   },
   {
     id: 3,
@@ -46,7 +46,7 @@ export function Sidebar({
     icon: CreditCard,
     status: applicationStatus?.payment ? "completed" : activeSection === 3 ? "active" : "pending",
     statusText: applicationStatus?.payment ? t('progress.completed') : activeSection === 3 ? t('progress.inProgress') : t('progress.pending'),
-    isEnabled: true, // ✅ always enabled
+    isEnabled: !applicationStatus?.payment, // Lock if submitted
   },
   {
     id: 4,
@@ -54,13 +54,13 @@ export function Sidebar({
     icon: Printer,
     status: (applicationStatus?.preferences && applicationStatus?.documents && applicationStatus?.payment) ? "completed" : activeSection === 4 ? "active" : "pending",
     statusText: (applicationStatus?.preferences && applicationStatus?.documents && applicationStatus?.payment) ? t('print.ready') : activeSection === 4 ? t('progress.inProgress') : t('progress.pending'),
-    isEnabled: true, // ✅ always enabled
+    isEnabled: !(applicationStatus?.preferences && applicationStatus?.documents && applicationStatus?.payment), // Lock if all completed
   },
 ], [language, t, applicationStatus, activeSection]);
 
   const handleSectionClick = (sectionId) => {
-   // const target = sections.find(s => s.id === sectionId);
-    //if (!target?.isEnabled) return; // block navigation if previous steps not complete
+    const target = sections.find(s => s.id === sectionId);
+    if (!target?.isEnabled) return; // Block navigation to locked/submitted tabs
     onSectionChange(sectionId);
     if (window.innerWidth < 1024) {
       onClose();
@@ -74,9 +74,9 @@ export function Sidebar({
   return (
     <>
       {/* Overlay for mobile */}
-      <div 
+      <div
         className={cn(
-          "fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden",
+          "fixed inset-0 bg-white bg-opacity-50 z-40 lg:hidden",
           isOpen ? "block" : "hidden"
         )}
         onClick={onClose}
@@ -132,7 +132,7 @@ export function Sidebar({
                     key={section.id}
                     className={cn(
                       "progress-step flex items-center p-3 transition-all duration-200",
-                      section.isEnabled ? "cursor-pointer hover:shadow-md" : "cursor-not-allowed opacity-60",
+                      section.isEnabled ? "cursor-pointer hover:shadow-md" : "cursor-not-allowed opacity-60 bg-gray-100",
                       section.status === "completed" && "bg-[#050C9C] text-white",
                       section.status === "active" && "bg-[#3ABEF9] text-white",
                       section.status === "pending" && "bg-background hover:bg-muted"
@@ -171,7 +171,8 @@ export function Sidebar({
                   variant={activeSection === section.id ? "default" : "ghost"}
                   className={cn(
                     "w-full justify-start p-3 h-auto",
-                    activeSection === section.id && "bg-[#3ABEF9] text-white hover:bg-[#3ABEF9]/90"
+                    activeSection === section.id && "bg-[#3ABEF9] text-white hover:bg-[#3ABEF9]/90",
+                    !section.isEnabled && "opacity-60 cursor-not-allowed"
                   )}
                   onClick={() => handleSectionClick(section.id)}
                   disabled={!section.isEnabled}

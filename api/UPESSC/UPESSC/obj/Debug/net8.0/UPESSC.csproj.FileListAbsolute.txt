@@ -1226,3 +1226,4 @@ D:\Ranjeet\UPESSC\api\UPESSC\UPESSC\obj\Debug\net8.0\refint\UPESSC.dll
 D:\Ranjeet\UPESSC\api\UPESSC\UPESSC\obj\Debug\net8.0\UPESSC.pdb
 D:\Ranjeet\UPESSC\api\UPESSC\UPESSC\obj\Debug\net8.0\UPESSC.genruntimeconfig.cache
 D:\Ranjeet\UPESSC\api\UPESSC\UPESSC\obj\Debug\net8.0\ref\UPESSC.dll
+D:\Ranjeet\UPESSC\api\UPESSC\UPESSC\bin\Debug\net8.0\UPESSC.staticwebassets.runtime.json
