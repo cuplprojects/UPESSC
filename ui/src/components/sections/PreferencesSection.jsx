@@ -6,21 +6,21 @@ import { Captcha } from "@/components/ui/captcha";
 import { useToast } from "@/hooks/use-toast";
 import { GripVertical, X, Check, MapPin, RotateCcw, Lock, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import API from "@/services/api/API";
 
 export function PreferencesSection() {
   const { toast } = useToast();
 
   const [selectedInstitutes, setSelectedInstitutes] = useState([]);
   const [institutes, setInstitutes] = useState([]);
+  const [submittedPreferences, setSubmittedPreferences] = useState([]);
   const [userSubject, setUserSubject] = useState(null);
   const [userGender, setUserGender] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
   const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
-  const [isLockCaptchaVerified, setIsLockCaptchaVerified] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isLocking, setIsLocking] = useState(false);
   const [draggedItem, setDraggedItem] = useState(null);
   const [dragOverIndex, setDragOverIndex] = useState(null);
 
@@ -31,55 +31,64 @@ export function PreferencesSection() {
 
   const fetchData = async () => {
     try {
-      const token = localStorage.getItem('token');
+      // Get user ID for fetching preferences
+      const userStr = localStorage.getItem('user');
+      const user = userStr ? JSON.parse(userStr) : null;
+      const userId = user?.id || 1;
 
-      // First, fetch user profile to get subject
-      const profileResponse = await fetch(`${import.meta.env.VITE_API_URL}/users/profile`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      const profileData = await profileResponse.json();
+      // Fetch institutes via API service
+      const { data: institutesRaw } = await API.get('/api/Institutes');
 
-      if (profileData.success) {
-        setUserSubject(profileData.data.user.subject);
-        setUserGender(profileData.data.user.gender);
-      } else {
-        throw new Error('Failed to fetch user profile');
-      }
+      if (Array.isArray(institutesRaw)) {
+        // Normalize fields from backend to UI shape
+        const normalized = institutesRaw.map((i) => ({
+          id: i.iid,
+          InstituteName: i.instituteName,
+          isFemaleInstitute: i.isFemaleInstitute,
+          Subject: i.subjectCode,
+          Category: i.category,
+        }));
 
-      // Fetch institutes
-      const institutesResponse = await fetch(`${import.meta.env.VITE_API_URL}/users/institutes`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      const institutesData = await institutesResponse.json();
-
-      if (institutesData.success) {
-        // Filter institutes based on user's subject and gender
-        const filteredInstitutes = institutesData.data.filter(institute => {
-          const matchesSubject = institute.Subject === profileData.data.user.subject;
-          const matchesGender = profileData.data.user.gender === 'female' ||
-                                !institute.isFemaleInstitute;
-          return matchesSubject && matchesGender;
-        });
-        setInstitutes(filteredInstitutes);
+        setInstitutes(normalized);
       }
 
       // Fetch existing preferences
-      const preferencesResponse = await fetch(`${import.meta.env.VITE_API_URL}/users/preferences`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      const preferencesData = await preferencesResponse.json();
+      try {
+        const { data: preferencesRaw } = await API.get('/api/CandidateInstitutePreferences');
 
-      if (preferencesData.success && preferencesData.data.length > 0) {
-        const orderedInstitutes = preferencesData.data.map(pref => pref.institute);
-        setSelectedInstitutes(orderedInstitutes);
-        setIsSubmitted(true);
-        setIsLocked(preferencesData.data[0]?.isLocked || false);
+        if (Array.isArray(preferencesRaw)) {
+          // Filter preferences for current user and sort by preference order
+          const userPreferences = preferencesRaw
+            .filter(pref => pref.cid === userId)
+            .sort((a, b) => a.preferenceOrder - b.preferenceOrder);
+
+          // Join with institute data
+          const preferencesWithInstitutes = userPreferences.map(pref => {
+            const institute = institutesRaw?.find(inst => inst.iid === pref.iid);
+            return {
+              ...pref,
+              institute: institute ? {
+                id: institute.iid,
+                InstituteName: institute.instituteName,
+                isFemaleInstitute: institute.isFemaleInstitute,
+                Subject: institute.subjectCode,
+                Category: institute.category,
+              } : null
+            };
+          }).filter(pref => pref.institute); // Only include preferences with valid institutes
+
+          setSubmittedPreferences(preferencesWithInstitutes);
+
+          // If user has submitted preferences, mark as submitted
+          if (preferencesWithInstitutes.length > 0) {
+            setIsSubmitted(true);
+            // Populate selectedInstitutes for display
+            setSelectedInstitutes(preferencesWithInstitutes.map(pref => pref.institute));
+          }
+        }
+      } catch (prefError) {
+        console.log('No existing preferences found or error fetching:', prefError);
+        // Don't show error for preferences - they might not exist yet
       }
 
     } catch (error) {
@@ -95,7 +104,7 @@ export function PreferencesSection() {
   };
 
   const handleInstituteToggle = (institute) => {
-    if (isLocked) return;
+    if (isSubmitted) return;
 
     const isSelected = selectedInstitutes.some((inst) => inst.id === institute.id);
 
@@ -115,7 +124,7 @@ export function PreferencesSection() {
   };
 
   const handleRemoveInstitute = (instituteId) => {
-    if (isLocked) return;
+    if (isSubmitted) return;
     setSelectedInstitutes((prev) =>
       prev.filter((inst) => inst.id !== instituteId)
     );
@@ -123,13 +132,13 @@ export function PreferencesSection() {
 
   // Drag and drop handlers
   const handleDragStart = (e, index) => {
-    if (isLocked) return;
+    if (isSubmitted) return;
     setDraggedItem(index);
     e.dataTransfer.effectAllowed = 'move';
   };
 
   const handleDragOver = (e, index) => {
-    if (isLocked) return;
+    if (isSubmitted) return;
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
     setDragOverIndex(index);
@@ -140,16 +149,16 @@ export function PreferencesSection() {
   };
 
   const handleDrop = (e, dropIndex) => {
-    if (isLocked) return;
+    if (isSubmitted) return;
     e.preventDefault();
-    
+
     if (draggedItem !== null && draggedItem !== dropIndex) {
       const newOrder = [...selectedInstitutes];
       const [movedItem] = newOrder.splice(draggedItem, 1);
       newOrder.splice(dropIndex, 0, movedItem);
       setSelectedInstitutes(newOrder);
     }
-    
+
     setDraggedItem(null);
     setDragOverIndex(null);
   };
@@ -160,11 +169,9 @@ export function PreferencesSection() {
   };
 
   const handleReset = () => {
-    if (isLocked) return;
+    if (isSubmitted) return; // Don't allow reset after submission
     setSelectedInstitutes([]);
-    setIsSubmitted(false);
     setIsCaptchaVerified(false);
-    setIsLockCaptchaVerified(false);
   };
 
   const handleSubmit = async () => {
@@ -188,41 +195,43 @@ export function PreferencesSection() {
 
     setIsSubmitting(true);
     try {
-      const token = localStorage.getItem('token');
-      const preferences = selectedInstitutes.map((institute, index) => ({
-        instituteId: institute.id,
-        preferenceOrder: index + 1
-      }));
+      // Get user ID (assuming it's stored in localStorage or available via auth)
+      const userStr = localStorage.getItem('user');
+      const user = userStr ? JSON.parse(userStr) : null;
+      const userId = user?.id || 1; // Fallback to 1 for testing
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/preferences`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ preferences })
+      // Submit each preference individually using the correct API
+      const submitPromises = selectedInstitutes.map((institute, index) => {
+        const preferenceData = {
+          cipid: 0, // Will be auto-generated by backend
+          cid: userId,
+          iid: institute.id,
+          preferenceOrder: index + 1
+        };
+
+        return API.post('/api/CandidateInstitutePreferences', preferenceData);
       });
 
-      const data = await response.json();
+      // Wait for all submissions to complete
+      const results = await Promise.all(submitPromises);
 
-      if (data.success) {
+      // Check if all submissions were successful
+      const allSuccessful = results.every(response => response.status === 200 || response.status === 201);
+
+      if (allSuccessful) {
         setIsSubmitted(true);
         toast({
           title: "Success",
-          description: "Preferences submitted successfully!",
+          description: "Institute preferences submitted successfully!",
         });
       } else {
-        toast({
-          title: "Error",
-          description: data.message || "Failed to submit preferences",
-          variant: "destructive",
-        });
+        throw new Error('Some preferences failed to submit');
       }
     } catch (error) {
       console.error('Submit error:', error);
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: "Failed to submit preferences. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -230,52 +239,6 @@ export function PreferencesSection() {
     }
   };
 
-  const handleLock = async () => {
-    if (!isLockCaptchaVerified || !isSubmitted) {
-      toast({
-        title: "Validation Error",
-        description: "Please verify captcha before locking preferences.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsLocking(true);
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/preferences/lock`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setIsLocked(true);
-        toast({
-          title: "Success",
-          description: "Preferences locked successfully!",
-        });
-      } else {
-        toast({
-          title: "Error",
-          description: data.message || "Failed to lock preferences",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error('Lock error:', error);
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLocking(false);
-    }
-  };
 
   if (isLoading) {
     return (
@@ -295,14 +258,8 @@ export function PreferencesSection() {
             Institute Preferences
           </h2>
           <p className="text-muted-foreground" data-testid="text-section-subtitle">
-            You must select exactly 5 institutes in order of your preference. You can reorder them by dragging.
+            Select exactly 5 institutes in order of your preference. Drag to reorder them.
           </p>
-          {isLocked && (
-            <Badge variant="destructive" className="mt-2" data-testid="badge-locked">
-              <Lock className="h-3 w-3 mr-1" />
-              Preferences Locked
-            </Badge>
-          )}
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
@@ -325,7 +282,7 @@ export function PreferencesSection() {
                       className={cn(
                         "p-4 cursor-pointer transition-all duration-200 hover:shadow-md",
                         isSelected && "border-[#050C9C] bg-[#050C9C]/5",
-                        isLocked && "cursor-not-allowed opacity-50"
+                        isSubmitted && "cursor-not-allowed opacity-50"
                       )}
                       onClick={() => handleInstituteToggle(institute)}
                       data-testid={`institute-card-${institute.id}`}
@@ -371,69 +328,114 @@ export function PreferencesSection() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {selectedInstitutes.map((institute, index) => (
-                  <Card
-                    key={institute.id}
-                    className={cn(
-                      "p-4 border-[#050C9C] bg-[#050C9C]/5 transition-all duration-200",
-                      !isLocked && "cursor-move",
-                      dragOverIndex === index && "border-2 border-dashed border-blue-400 bg-blue-50"
-                    )}
-                    data-testid={`selected-institute-${institute.id}`}
-                    draggable={!isLocked}
-                    onDragStart={(e) => handleDragStart(e, index)}
-                    onDragOver={(e) => handleDragOver(e, index)}
-                    onDragLeave={handleDragLeave}
-                    onDrop={(e) => handleDrop(e, index)}
-                    onDragEnd={handleDragEnd}
-                  >
-                    <div className="flex items-center">
-                      {!isLocked && (
-                        <div className="drag-handle mr-3 text-muted-foreground cursor-grab active:cursor-grabbing">
-                          <GripVertical className="h-4 w-4" />
-                        </div>
-                      )}
-                      <div className="flex-1">
-                        <div className="flex items-center">
-                          <Badge className="bg-[#050C9C] text-white mr-3" data-testid={`badge-preference-${index + 1}`}>
-                            {index + 1}
-                          </Badge>
-                          <div>
-                            <h4 className="font-medium" data-testid={`text-selected-name-${institute.id}`}>
-                              {institute.InstituteName}
-                            </h4>
-                            <p className="text-sm text-muted-foreground" data-testid={`text-selected-category-${institute.id}`}>
-                              Category: {institute.Category}
-                            </p>
-                            <div className="flex flex-wrap gap-1 mt-1">
-                              {institute.isFemaleInstitute && (
-                                <Badge variant="secondary" className="text-xs" data-testid={`badge-selected-female-${institute.id}`}>
-                                  Female Institute
-                                </Badge>
-                              )}
-                              {institute.Subject && (
-                                <Badge variant="outline" className="text-xs" data-testid={`badge-selected-subject-${institute.id}`}>
-                                  {institute.Subject}
-                                </Badge>
-                              )}
+                {isSubmitted && submittedPreferences.length > 0 ? (
+                  // Show submitted preferences (read-only)
+                  submittedPreferences.map((preference) => (
+                    <Card
+                      key={preference.cipid}
+                      className="p-4 border-green-200 bg-green-50/50"
+                      data-testid={`submitted-preference-${preference.cipid}`}
+                    >
+                      <div className="flex items-center">
+                        <div className="flex-1">
+                          <div className="flex items-center">
+                            <Badge className="bg-green-600 text-white mr-3" data-testid={`badge-submitted-preference-${preference.preferenceOrder}`}>
+                              {preference.preferenceOrder}
+                            </Badge>
+                            <div>
+                              <h4 className="font-medium" data-testid={`text-submitted-name-${preference.iid}`}>
+                                {preference.institute?.InstituteName}
+                              </h4>
+                              <p className="text-sm text-muted-foreground" data-testid={`text-submitted-category-${preference.iid}`}>
+                                Category: {preference.institute?.Category}
+                              </p>
+                              <div className="flex flex-wrap gap-1 mt-1">
+                                {preference.institute?.isFemaleInstitute && (
+                                  <Badge variant="secondary" className="text-xs" data-testid={`badge-submitted-female-${preference.iid}`}>
+                                    Female Institute
+                                  </Badge>
+                                )}
+                                {preference.institute?.Subject && (
+                                  <Badge variant="outline" className="text-xs" data-testid={`badge-submitted-subject-${preference.iid}`}>
+                                    {preference.institute.Subject}
+                                  </Badge>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <Badge variant="outline" className="text-green-700 border-green-300">
+                          Submitted
+                        </Badge>
                       </div>
-                      {!isLocked && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-destructive hover:bg-destructive/10"
-                          onClick={() => handleRemoveInstitute(institute.id)}
-                          data-testid={`button-remove-${institute.id}`}
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
+                    </Card>
+                  ))
+                ) : (
+                  // Show editable selected institutes
+                  selectedInstitutes.map((institute, index) => (
+                    <Card
+                      key={institute.id}
+                      className={cn(
+                        "p-4 border-[#050C9C] bg-[#050C9C]/5 transition-all duration-200",
+                        !isSubmitted && "cursor-move",
+                        dragOverIndex === index && "border-2 border-dashed border-blue-400 bg-blue-50"
                       )}
-                    </div>
-                  </Card>
-                ))}
+                      data-testid={`selected-institute-${institute.id}`}
+                      draggable={!isSubmitted}
+                      onDragStart={(e) => handleDragStart(e, index)}
+                      onDragOver={(e) => handleDragOver(e, index)}
+                      onDragLeave={handleDragLeave}
+                      onDrop={(e) => handleDrop(e, index)}
+                      onDragEnd={handleDragEnd}
+                    >
+                      <div className="flex items-center">
+                        {!isSubmitted && (
+                          <div className="drag-handle mr-3 text-muted-foreground cursor-grab active:cursor-grabbing">
+                            <GripVertical className="h-4 w-4" />
+                          </div>
+                        )}
+                        <div className="flex-1">
+                          <div className="flex items-center">
+                            <Badge className="bg-[#050C9C] text-white mr-3" data-testid={`badge-preference-${index + 1}`}>
+                              {index + 1}
+                            </Badge>
+                            <div>
+                              <h4 className="font-medium" data-testid={`text-selected-name-${institute.id}`}>
+                                {institute.InstituteName}
+                              </h4>
+                              <p className="text-sm text-muted-foreground" data-testid={`text-selected-category-${institute.id}`}>
+                                Category: {institute.Category}
+                              </p>
+                              <div className="flex flex-wrap gap-1 mt-1">
+                                {institute.isFemaleInstitute && (
+                                  <Badge  className="text-sm" data-testid={`badge-selected-female-${institute.id}`}>
+                                    Female Institute
+                                  </Badge>
+                                )}
+                                {institute.Subject && (
+                                  <Badge variant="outline" className="text-xs" data-testid={`badge-selected-subject-${institute.id}`}>
+                                    {institute.Subject}
+                                  </Badge>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {!isSubmitted && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="text-destructive hover:bg-destructive/10"
+                            onClick={() => handleRemoveInstitute(institute.id)}
+                            data-testid={`button-remove-${institute.id}`}
+                          >
+                            <X className="h-4 w-4" />
+                          </Button>
+                        )}
+                      </div>
+                    </Card>
+                  ))
+                )}
 
                 {selectedInstitutes.length === 0 && (
                   <div className="text-center py-8" data-testid="text-no-preferences">
@@ -447,17 +449,17 @@ export function PreferencesSection() {
               </div>
 
               {/* Action Buttons */}
-              {!isLocked && (
+              {!isSubmitted && (
                 <div className="space-y-4 mt-8">
                   <Button
                     variant="outline"
                     className="w-full"
                     onClick={handleReset}
-                    disabled={selectedInstitutes.length === 0}
+                    disabled={selectedInstitutes.length === 0 || isSubmitted}
                     data-testid="button-reset"
                   >
                     <RotateCcw className="h-4 w-4 mr-2" />
-                    Reset Preferences
+                    {isSubmitted ? "Preferences Submitted" : "Reset Selections"}
                   </Button>
 
                   {/* Warning message for incomplete selection */}
@@ -491,26 +493,39 @@ export function PreferencesSection() {
                     </Button>
                   </div>
 
-                  {isSubmitted && (
-                    <Card className="p-4 bg-muted" data-testid="card-lock-section">
-                      <p className="text-sm text-muted-foreground mb-3" data-testid="text-lock-warning">
-                        Warning: Once locked, preferences cannot be modified. Please verify with captcha to confirm.
-                      </p>
+                  {isCaptchaVerified && (
+                    <Card className="p-4 bg-blue-50 border-blue-200" data-testid="card-submit-instructions">
                       <div className="space-y-3">
-                        <Captcha 
-                          onVerify={setIsLockCaptchaVerified}
-                          className="w-full"
-                        />
-                        <Button
-                          variant="destructive"
-                          className="w-full"
-                          onClick={handleLock}
-                          disabled={!isLockCaptchaVerified || isLocking}
-                          data-testid="button-lock-preferences"
-                        >
-                          <Lock className="h-4 w-4 mr-2" />
-                          {isLocking ? "Locking..." : "Lock Preferences"}
-                        </Button>
+                        <div className="flex items-start space-x-2">
+                          <Check className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                          <div>
+                            <p className="text-sm font-medium text-blue-800" data-testid="text-submit-ready">
+                              Ready to submit your institute preferences!
+                            </p>
+                            <p className="text-xs text-blue-700 mt-1">
+                              Your selections will be saved and you can proceed to the next step.
+                              {selectedInstitutes.length === 0 && " You haven't selected any institutes yet."}
+                            </p>
+                          </div>
+                        </div>
+
+                        {selectedInstitutes.length === 0 && (
+                          <div className="bg-amber-50 border border-amber-200 rounded p-3">
+                            <p className="text-sm text-amber-800">
+                              <strong>Tip:</strong> Select institutes from the left panel by clicking on them.
+                              You need exactly 5 institutes in your preferred order.
+                            </p>
+                          </div>
+                        )}
+
+                        {selectedInstitutes.length > 0 && selectedInstitutes.length < 5 && (
+                          <div className="bg-orange-50 border border-orange-200 rounded p-3">
+                            <p className="text-sm text-orange-800">
+                              <strong>Note:</strong> You have selected {selectedInstitutes.length} institute(s).
+                              You need exactly 5 institutes to proceed.
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </Card>
                   )}
