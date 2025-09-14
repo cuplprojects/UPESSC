@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\Office\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj": {}
+    "D:\\Ranjeet\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\Office\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj": {
+    "D:\\Ranjeet\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\Office\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
+        "projectUniqueName": "D:\\Ranjeet\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
         "projectName": "UPESSC",
-        "projectPath": "D:\\Projects\\Office\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
-        "packagesPath": "C:\\Users\\codew\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\Office\\UPESSC\\api\\UPESSC\\UPESSC\\obj\\",
+        "projectPath": "D:\\Ranjeet\\UPESSC\\api\\UPESSC\\UPESSC\\UPESSC.csproj",
+        "packagesPath": "C:\\Users\\cupl\\.nuget\\packages\\",
+        "outputPath": "D:\\Ranjeet\\UPESSC\\api\\UPESSC\\UPESSC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\codew\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\cupl\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
