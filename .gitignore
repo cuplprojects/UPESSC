@@ -1,4 +1,4 @@
-ui/node_modules
+git ui/node_modules
 ui/dist
 
 .vs/
@@ -7,3 +7,10 @@ ui/dist
 api/UPESSC/UPESSC/bin
 api/UPESSC/UPESSC/obj
 api/UPESSC/.vs
+*.dll
+*.dll
+api/UPESSC/UPESSC/bin/Debug/net8.0/AWSSDK.Core.dll
+api/UPESSC/UPESSC/bin/Debug/net8.0/AWSSDK.Core.dll
+*.dll
+api/UPESSC/UPESSC/bin/Debug/net8.0/AWSSDK.Core.dll
+api/UPESSC/UPESSC/bin/Debug/net8.0/Azure.Core.dll
