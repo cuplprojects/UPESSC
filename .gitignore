@@ -4,6 +4,10 @@ ui/dist
 .vs/
 
 
+
 api/UPESSC/UPESSC/bin
+api/UPESSC/UPESSC/bin/Debug
+
 api/UPESSC/UPESSC/obj
+
 api/UPESSC/.vs
