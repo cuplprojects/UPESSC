@@ -11,6 +11,8 @@ ui/dist/
 **/obj/
 **/Debug/
 **/Release/
+**/wwwroot/uploads/certificate/
+**/wwwroot/uploads/marksheets/
 
 # .NET specific
 *.dll

@@ -58,6 +58,7 @@ namespace UPESSC.Models
         public string? Payment_Date { get; set; } // If this is actually date, use DateTime instead of double
         public string? Payment_Mode { get; set; }
         public string? RollNumber { get; set; }
+        public string? InterviewDate { get; set; }
     }
 }
 
