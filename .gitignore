@@ -1,6 +1,5 @@
 # UI build artifacts
 ui/node_modules
-node_modules
 ui/dist/
 
 # Visual Studio / VS Code
