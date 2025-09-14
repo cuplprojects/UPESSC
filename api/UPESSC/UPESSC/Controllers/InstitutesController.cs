@@ -141,6 +141,68 @@ namespace UPESSC.Controllers
             return CreatedAtAction("GetInstitute", new { id = institute.IID }, institute);
         }
 
+        [HttpPost("GetInsitutesbyUserID")]
+        public async Task<ActionResult<IEnumerable<Institute>>> GetInsitutesbyUserID(InstitutGetRequest institutGetRequest)
+        {
+            var Candidate = await _context.Candidates.FindAsync(institutGetRequest.CID);
+            if (Candidate == null)
+            {
+                return NotFound("Candidate not found.");
+            }
+
+            var isFemale = Candidate.Gender == "Female";
+            var candidateCategory = Candidate.Category_Code;
+
+            var subject = await _context.Subjects.FirstOrDefaultAsync(s => s.SubjectNameEnglish == Candidate.Subject_Name);
+            if (subject == null)
+            {
+                return NotFound("Subject not found.");
+            }
+            var subjectCode = subject.SubjectCode;
+
+            IQueryable<Institute> query = _context.Institutes;
+
+            // Filter out female institutes if candidate is NOT female
+            if (!isFemale)
+            {
+                query = query.Where(i => i.isFemaleInstitute == false);
+            }
+
+            // Filter by category + subject
+            if (!string.IsNullOrEmpty(candidateCategory))
+            {
+                if (candidateCategory != "GEN")
+                {
+                    query = query.Where(i => i.Category == candidateCategory || i.Category == "GEN");
+                }
+                else
+                {
+                    query = query.Where(i => i.Category == "GEN");
+                }
+            }
+
+            query = query.Where(i => i.SubjectCode == subjectCode);
+
+            // ✅ Ordering:
+            // 1. If candidate is female → female institutes first
+            // 2. Institutes with candidate's category first
+            if (isFemale)
+            {
+                query = query
+                    .OrderByDescending(i => i.isFemaleInstitute) // true first, false later
+                    .ThenBy(i => i.Category != candidateCategory); // candidate category first, then others
+            }
+            else
+            {
+                query = query
+                    .OrderBy(i => i.Category != candidateCategory); // candidate category first for non-female
+            }
+
+            var institutes = await query.ToListAsync();
+            return institutes;
+        }
+
+
         // DELETE: api/Institutes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteInstitute(int id)
@@ -161,5 +223,10 @@ namespace UPESSC.Controllers
         {
             return _context.Institutes.Any(e => e.IID == id);
         }
+    }
+
+    public class InstitutGetRequest
+    {
+        public int CID { get; set; }
     }
 }
