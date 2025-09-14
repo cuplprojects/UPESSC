@@ -207,72 +207,57 @@ namespace UPESSC.Controllers
         {
             var chairmen = await _context.BoardCMs.ToListAsync();
             var experts = await _context.ExpertsMasters.ToListAsync();
-            var subjectSchedules = await _context.SubjectSchedules
-                .OrderBy(s => s.Date)
-                .ToListAsync();
+            var subjectSchedules = await _context.SubjectSchedules.OrderBy(s => s.Date).ToListAsync();
 
             if (chairmen.Count < 13 || experts.Count < 36)
-            {
                 return BadRequest("Not enough chairmen or experts to allocate.");
-            }
 
             var rnd = new Random();
 
-            // ✅ Take only first 3200 candidates (deterministic ordering)
+            // ✅ Take all candidates who are to be interviewed (InterviewDate null)
             var allCandidates = await _context.Candidates
-                .OrderBy(c => c.CID)
-                .Take(3200)
+                .Where(c => string.IsNullOrEmpty(c.InterviewDate))
                 .ToListAsync();
 
             var boardsList = new List<Boards>();
             var updatedCandidates = new List<Candidate>();
-            var unallocatedCandidates = new List<Candidate>();
+            var allocatedCandidateIds = new HashSet<int>();
 
             foreach (var schedule in subjectSchedules)
             {
-                // ✅ Filter only from 3200 candidates
+                // ✅ Get candidates for this subject who are not yet allocated
                 var candidates = (
                     from c in allCandidates
                     join s in _context.Subjects
-                        on c.Subject_Name.Trim().ToLower()
-                        equals s.SubjectNameEnglish.Trim().ToLower()
+                        on c.Subject_Name.Trim().ToLower() equals s.SubjectNameEnglish.Trim().ToLower()
                     where s.SubjectCode == schedule.SubjectCode.ToString()
+                    where !allocatedCandidateIds.Contains(c.CID)
                     select c
-                ).ToList();
-
-                // Shuffle after filtering
-                candidates = candidates.OrderBy(x => rnd.Next()).ToList();
+                ).OrderBy(x => rnd.Next()).ToList();
 
                 int candidateIndex = 0;
                 DateTime currentSlotTime = schedule.Date.Date.AddHours(9);
-                TimeSpan dayEnd = TimeSpan.FromHours(19); // 7 PM
+                TimeSpan dayEnd = TimeSpan.FromHours(19);
 
-                while (candidateIndex < candidates.Count)
+                while (candidateIndex < candidates.Count && currentSlotTime.TimeOfDay < dayEnd)
                 {
-                    if (currentSlotTime.TimeOfDay >= dayEnd)
-                    {
-                        // ✅ Only collect unallocated (still no InterviewDate)
-                        for (int i = candidateIndex; i < candidates.Count; i++)
-                        {
-                            if (string.IsNullOrEmpty(candidates[i].InterviewDate))
-                                unallocatedCandidates.Add(candidates[i]);
-                        }
-                        break;
-                    }
-
+                    // Shuffle chairmen & experts fresh for this slot
                     var shuffledChairmen = chairmen.OrderBy(x => rnd.Next()).Take(12).ToList();
                     var shuffledExperts = experts.OrderBy(x => rnd.Next()).Take(36).ToList();
-
                     int expertIndex = 0;
 
                     for (int b = 0; b < 12 && candidateIndex < candidates.Count; b++)
                     {
                         var candidate = candidates[candidateIndex++];
 
+                        if (!allocatedCandidateIds.Add(candidate.CID))
+                            continue; // skip duplicates
+
+                        // Assign interview date/time
                         candidate.InterviewDate = currentSlotTime.ToString("yyyy-MM-dd HH:mm:ss");
                         updatedCandidates.Add(candidate);
 
-                        var board = new Boards
+                        boardsList.Add(new Boards
                         {
                             CID = candidate.CID,
                             C1 = shuffledChairmen[b].BCMID,
@@ -280,27 +265,21 @@ namespace UPESSC.Controllers
                             E2 = shuffledExperts[expertIndex++].EMID,
                             E3 = shuffledExperts[expertIndex++].EMID,
                             DateTimeSlot = currentSlotTime
-                        };
-
-                        boardsList.Add(board);
+                        });
                     }
 
-                    // Move to next slot (slot duration + 10 min break)
-                    currentSlotTime = currentSlotTime.AddMinutes(request.SlotDurationMinutes + 40);
+                    currentSlotTime = currentSlotTime.AddMinutes(request.SlotDurationMinutes + 10);
                 }
             }
 
-            // ✅ Persist board allocations
+            // ✅ Save boards and updated candidates
             _context.Boards.AddRange(boardsList);
-
-            // ✅ Bulk update interview dates only for updated candidates
             _context.Candidates.UpdateRange(updatedCandidates);
-
             await _context.SaveChangesAsync();
 
-            // ✅ Generate Excel ONLY for candidates whose InterviewDate is NOT allotted
-            var notAllotted = allCandidates
-                .Where(c => string.IsNullOrEmpty(c.InterviewDate))
+            // ✅ Generate Excel for candidates still not allocated (if any)
+            var notAllocated = allCandidates
+                .Where(c => !allocatedCandidateIds.Contains(c.CID))
                 .ToList();
 
             string filePath = Path.Combine(Path.GetTempPath(), $"UnallocatedCandidates_{DateTime.Now:yyyyMMddHHmmss}.xlsx");
@@ -313,7 +292,7 @@ namespace UPESSC.Controllers
                 worksheet.Cell(1, 4).Value = "Subject_Name";
 
                 int row = 2;
-                foreach (var c in notAllotted)
+                foreach (var c in notAllocated)
                 {
                     worksheet.Cell(row, 1).Value = c.CID;
                     worksheet.Cell(row, 2).Value = c.Enrollment_No;
@@ -332,6 +311,7 @@ namespace UPESSC.Controllers
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 "UnallocatedCandidates.xlsx");
         }
+
 
 
 
